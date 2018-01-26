@@ -6,11 +6,12 @@ public class PlayerShoot : MonoBehaviour {
 
 	//[SerializeField]
 	public GameObject bullet;
+	public float bulletSpeed = 1f;
 
-	private Transform bulletPosition;
+	private Vector2 bulletPosition;
 
 	public float bulletImpulse = 300f;
-	public float shootSpeed = 1;
+	public float shootSpeed = 0.2f;
 	public float lastShotTime;
 
 	void Start() {
@@ -28,14 +29,28 @@ public class PlayerShoot : MonoBehaviour {
 
 	void Fire()
 	{
+		bulletPosition = transform.position;
+
 		if (Time.time>(lastShotTime + shootSpeed))
 		{
 			GameObject bulletClone =  Instantiate(bullet, bulletPosition, transform.rotation); 
+			bulletClone.gameObject.SetActive (true);
+
+			Vector2 currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Vector2 mouseDirection = new Vector2 (currentMousePosition.x - transform.position.x,
+				currentMousePosition.y - transform.position.y );
+
+
+			Debug.Log (currentMousePosition +" " +transform.position + " "+ mouseDirection.x+ " "+ mouseDirection.y);
+
 
 			//Physics.IgnoreCollision(bulletClone.collider, collider);
+			//bulletClone.GetComponent<Rigidbody2D>().velocity = bullet.transform.forward * 6;
 
-			Rigidbody2D rb = bulletClone.GetComponent<Rigidbody2D> ();
-			rb.AddForce(transform.forward*bulletImpulse, ForceMode2D.Impulse);
+			bulletClone.GetComponent<Rigidbody2D>().AddForce(mouseDirection.normalized * bulletSpeed);
+			Destroy(bulletClone, 10.0f);
+			//Rigidbody2D rb = bulletClone.GetComponent<Rigidbody2D> ();
+			//rb.AddForce(transform.forward*bulletImpulse, ForceMode2D.Impulse);
 
 			lastShotTime = Time.time;
 		}

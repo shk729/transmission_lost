@@ -34,7 +34,7 @@ public class PlayerMove : MonoBehaviour {
 		currentMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 mouseDirection = new Vector2 (currentMousePosition.x - transform.position.x,
 			currentMousePosition.y - transform.position.y );
-		Debug.DrawRay(transform.position, mouseDirection, Color.red);
+
 
 
 		//rotation calculation
@@ -45,18 +45,15 @@ public class PlayerMove : MonoBehaviour {
 		float playerAngle = eulerAngles.z;
 		if (playerAngle > 180)
 			playerAngle -= 360;
-		float rotAngle = Mathf.Atan (currentMousePosition.normalized.y / currentMousePosition.normalized.x);
+		float rotAngle = Mathf.Atan (mouseDirection.normalized.y / mouseDirection.normalized.x);
 
-		if (currentMousePosition.normalized.x >= 0)
-			moveAngle = rotAngle * Mathf.Rad2Deg - 90;
-		else if (currentMousePosition.normalized.x < 0)
-			moveAngle = rotAngle * Mathf.Rad2Deg + 90;
+		if (mouseDirection.normalized.x >= 0) moveAngle = rotAngle * Mathf.Rad2Deg - 90;
+		else if (mouseDirection.normalized.x < 0) moveAngle = rotAngle * Mathf.Rad2Deg + 90;
 
 		newRotation = Quaternion.Euler (0, 0, moveAngle);
 		player.transform.rotation = Quaternion.Slerp (player.transform.rotation, newRotation, Time.fixedDeltaTime * rotationSpeed);
 
 		playerBody.freezeRotation = false;
-
 
 	}
 
