@@ -36,8 +36,8 @@ public class PlayerMove : MonoBehaviour {
 			currentMousePosition.y - transform.position.y );
 		Debug.DrawRay(transform.position, mouseDirection, Color.red);
 
-		//rotation calculation
 
+		//rotation calculation
 		float rotationSpeed = 2f;
 		playerBody.freezeRotation = true;
 
@@ -75,5 +75,10 @@ public class PlayerMove : MonoBehaviour {
 
 		playerBody.AddForce (moveDirection * 1.5f);
 	} //void KeyboardMove
+
+	public static Vector2 GetPlayerVelocity()
+	{
+		return playerBody.velocity;
+	}
 		
 }
