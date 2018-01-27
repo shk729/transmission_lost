@@ -18,30 +18,17 @@ public class BulletHitChecker : MonoBehaviour
 		
 		if (target.gameObject.tag == "Monster") 
 		{
-			/*
-			//exlosion animation
-			ParticleSystem hitEffect_clone =  Instantiate(hitEffect, transform.position, transform.rotation); 
-			hitEffect_clone.gameObject.SetActive (true);
-			Destroy (hitEffect_clone, hitEffect.duration);
-			*/
-
-			//monster die animation
-
-
-			//MonsterAI.SetAgressiveState ();
-
-
 			target.GetComponent<MonsterAI>().monsterHealth -= damage;
-
 			target.GetComponent<MonsterAI> ().agressive = true;
-
 
 			if (target.GetComponent<MonsterAI> ().monsterHealth <= 0)
 			{
 				target.gameObject.SetActive (false);
+			
 				//EFFECT
 				ParticleSystem monsterDie_clone =  Instantiate(monsterDie, target.transform.position, target.transform.rotation); 
 				monsterDie_clone.gameObject.SetActive (true);
+
 				Destroy (monsterDie_clone, monsterDie.duration);
 			}
 
@@ -58,6 +45,7 @@ public class BulletHitChecker : MonoBehaviour
 			//exlosion animation
 			ParticleSystem hitEffect_clone =  Instantiate(hitEffect, transform.position, transform.rotation); 
 			hitEffect_clone.gameObject.SetActive (true);
+			//GetComponent<AudioSource>().PlayOneShot(hitSound);
 			Destroy (hitEffect_clone, 0.8f);
 			Destroy (this.gameObject, 0f);
 		}
