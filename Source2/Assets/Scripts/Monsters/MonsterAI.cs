@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterAI : RigidPausable {
+public class MonsterAI : MonoBehaviour {
 
 
 	public float monsterHealth = 100;
@@ -26,8 +26,7 @@ public class MonsterAI : RigidPausable {
 
 	void FixedUpdate ()
 	{	
-		if (pause)
-			return;
+		
 		if (!agressive) {
 			Vector2 tempForce = transform.position - retranslator.transform.position;
 			transform.position = Vector3.Lerp (transform.position, retranslator.transform.position, Time.deltaTime * monsterSpeed);
