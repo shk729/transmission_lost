@@ -78,4 +78,8 @@ public class PlayerMove : MonoBehaviour {
 		return playerBody.velocity;
 	}
 		
+	public static Vector2 GetPlayerPosition()
+	{
+		return playerBody.transform.position;
+	}
 }
