@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour {
+public class PlayerShoot : RigidPausable {
 
 	//[SerializeField]
 	public GameObject bullet;
-	public float bulletSpeed = 1f;
+	public float bulletSpeed = 0.5f;
 
 	private Vector2 bulletPosition;
 
@@ -20,6 +20,8 @@ public class PlayerShoot : MonoBehaviour {
 
 	void FixedUpdate () 
 	{
+		if (pause)
+			return;
 		if (Input.GetKey(KeyCode.Mouse0))
 		{
 			Fire ();
