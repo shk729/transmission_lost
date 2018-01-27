@@ -56,7 +56,8 @@
      <Compile Include="Assets\Scene\Menu\script\SelectorScript.cs" />
      <Compile Include="Assets\Scripts\Bullets\BulletHitChecker.cs" />
      <Compile Include="Assets\Scripts\Camera\SpaceFollow.cs" />
-     <Compile Include="Assets\Scripts\Exit.cs" />
+     <Compile Include="Assets\Scripts\Exit\Exit.cs" />
+     <Compile Include="Assets\Scripts\HUD\Cursor\ChangeCursor.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerCollision.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMove1.cs" />
