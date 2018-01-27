@@ -78,7 +78,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterest3", state);
         state = checkPOI("pointOfInterest1", state);
         state = sayKesha("Сигнал пошел!", state);
-        state = sayLev("Подтверждаю, есть сигнал! Отлично, осталось еще три.", state);
+        state = sayLev("Подтверждаю, есть сигнал! Отлично, осталось еще три ретранслятора.", state);
 
         //	state = camera (-19.6f, 8.6f, state);
         //	state = activateSpawner (state);
