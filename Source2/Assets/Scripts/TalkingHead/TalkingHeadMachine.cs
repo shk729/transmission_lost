@@ -34,6 +34,7 @@ public class TalkingHeadMachine : MonoBehaviour {
 		state = first;
 		state = sayLev ("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
 		state = sayKesha("O, боже!!! Это же ЛЕВЪ!!!1 >:3" , state);
+		state = playerInZone ("Zone_1", state);
 		state = pause (true, state);
 		state = camera (-19.6f, 8.6f, state);
 		state = activateSpawner (state);
@@ -92,6 +93,11 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	State activateSpawner(State afterState) {
 		afterState.next = new ActivateSpawnerState (this);
+		return afterState.next;
+	}
+
+	State playerInZone(string zoneName, State afterState) {
+		afterState.next = new PlayerInZoneState (this, zoneName);
 		return afterState.next;
 	}
 
@@ -283,6 +289,34 @@ class ActivateSpawnerState : State {
 	}
 	public void Exit() {} 
 }
+
+
+class PlayerInZoneState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public PlayerInZoneState (TalkingHeadMachine machine, string zoneName) {
+		this.zoneName = zoneName;
+		this.machine = machine;
+	}
+
+	private Collider2D player;
+	private Collider2D area;
+	private string zoneName;
+
+	public void Enter() {
+		area = GameObject.Find ("/Areas/" + zoneName).GetComponent<Collider2D>();
+		player = GameObject.Find ("/Player").GetComponent<Collider2D>();
+		Debug.Log ("Areas " + area + " , " + player);
+	}
+	public void Run () {
+		if (player.IsTouching (area)) {
+			machine.NextState (next);
+		}
+	}
+	public void Exit() {} 
+}
+
 
 /*
 class PauseState : State {
