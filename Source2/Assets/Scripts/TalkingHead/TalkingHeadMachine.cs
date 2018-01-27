@@ -33,6 +33,7 @@ public class TalkingHeadMachine : MonoBehaviour {
 		first = new JustWaitState(this, 3);
 		state = first;
 		state = sayLev ("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
+		state = checkPOI ("pointOfInterest1", state);
 		state = sayKesha("O, боже!!! Это же ЛЕВЪ!!!1 >:3" , state);
 		state = allMobIsDead (state);
 		state = playerInZone ("Zone_1", state);
@@ -104,6 +105,11 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	State allMobIsDead(State afterState) {
 		afterState.next = new AllMobIsDeadState (this);
+		return afterState.next;
+	}
+
+	State checkPOI(string poiName, State afterState) {
+		afterState.next = new POITriggerState (this, poiName);
 		return afterState.next;
 	}
 
@@ -352,6 +358,31 @@ class AllMobIsDeadState : State {
 		}
 
 	}
+}
+
+class POITriggerState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	private string poi_name;
+	private POIProgress poi;
+
+	public POITriggerState(TalkingHeadMachine machine, string poi_name) {
+		this.machine = machine;
+		this.poi_name = poi_name;
+	}
+
+
+	public void Enter() {
+		poi = GameObject.Find ("Retranslator/Canvas/" + poi_name).GetComponent<POIProgress>();
+		poi.readyForCheck = true;
+	}
+	public void Run () {
+		if (poi.completed) {
+			machine.NextState (next);
+		}
+	}
+	public void Exit() {} 
 }
 
 

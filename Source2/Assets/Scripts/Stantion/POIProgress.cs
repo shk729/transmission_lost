@@ -13,6 +13,10 @@ public class POIProgress : MonoBehaviour {
 	public float POIinitialRadius = 0.03f;
 	public float POIradius = 0.3f;
 
+
+	public bool readyForCheck = false;
+	public bool completed = false;
+
 	void Start()
 	{
 		POI_Slider_initialization ();
@@ -66,6 +70,9 @@ public class POIProgress : MonoBehaviour {
 
 		if (curValue_slider > maxValue_slider)
 		{
+			if (readyForCheck) {
+				completed = true;
+			}
 			curValue_slider = 0;
 			//another shit
 		}  
