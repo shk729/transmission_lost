@@ -9,7 +9,7 @@ public class PlayerCollision : MonoBehaviour {
 	private Slider POI_Slider;
 
 	private float curValue_slider;
-	public float maxValue_slider = 1000f;
+	public float maxValue_slider = 500f;
 	public float POIinitialRadius = 0.03f;
 	public float POIradius = 0.3f;
 
@@ -64,7 +64,7 @@ public class PlayerCollision : MonoBehaviour {
 		curValue_slider++;
 		POI_Slider.value = curValue_slider;
 
-		if (curValue_slider > 1000)
+		if (curValue_slider > maxValue_slider)
 		{
 			curValue_slider = 0;
 			//another shit

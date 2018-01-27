@@ -25,6 +25,9 @@ public class PlayerShoot : RigidPausable {
 		if (Input.GetKey(KeyCode.Mouse0))
 		{
 			Fire ();
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.Play();
+
 		}
 	}//	void FixedUpdate ()
 
