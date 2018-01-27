@@ -30,10 +30,10 @@ public class PlayerCollision : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D target)
 	{
 
-		if (target.gameObject.tag == "POI") 
+		if (target.gameObject.tag == "Player") 
 		{	
 			POI_Slider.gameObject.SetActive (true);
-			CircleCollider2D col = target.GetComponent<CircleCollider2D> ();
+			CircleCollider2D col = gameObject.GetComponent<CircleCollider2D> ();
 			col.radius  = POIradius;
 		
 		}
@@ -42,7 +42,7 @@ public class PlayerCollision : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D target)
 	{	
-		if (target.gameObject.tag == "POI")
+		if (target.gameObject.tag == "Player")
 		{
 			POIchecking ();
 		}
@@ -51,9 +51,9 @@ public class PlayerCollision : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D target)
 	{
-		if (target.gameObject.tag == "POI") 
+		if (target.gameObject.tag == "Player") 
 		{
-			CircleCollider2D col = target.GetComponent<CircleCollider2D> ();
+			CircleCollider2D col = gameObject.GetComponent<CircleCollider2D> ();
 			col.radius  = POIinitialRadius;
 			POI_Slider.gameObject.SetActive (false);
 		}

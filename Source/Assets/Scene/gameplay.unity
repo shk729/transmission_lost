@@ -531,26 +531,6 @@ Transform:
   m_Father: {fileID: 1157905671}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &660712494 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1090280811872794, guid: 19607274f51f3488c862c47a37b88ac1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1509797189}
---- !u!114 &660712495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 660712494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cb29e3d5f9b24f88bfc90990f032706, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  POI_Slider: {fileID: 1018978497}
-  maxValue_slider: 1000
-  POIinitialRadius: 0.03
-  POIradius: 0.3
 --- !u!4 &775001049 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4277708322761356, guid: f71c75237f9c049c9aa8a9c883de68a7,
@@ -641,6 +621,7 @@ GameObject:
   - component: {fileID: 862186660}
   - component: {fileID: 862186662}
   - component: {fileID: 862186661}
+  - component: {fileID: 862186663}
   m_Layer: 8
   m_Name: pointOfInterest1
   m_TagString: POI
@@ -720,6 +701,21 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &862186663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862186659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cb29e3d5f9b24f88bfc90990f032706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  POI_Slider: {fileID: 1018978497}
+  maxValue_slider: 1000
+  POIinitialRadius: 0.03
+  POIradius: 0.3
 --- !u!4 &922819714 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4277708322761356, guid: f71c75237f9c049c9aa8a9c883de68a7,
@@ -740,7 +736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1018978496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -873,7 +869,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1140410798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -70, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1076156057}
@@ -2513,7 +2509,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1656039512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -70, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1400339074}
