@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour {
+public class PlayerMove : RigidPausable {
 
 	private GameObject player;
 	static Rigidbody2D playerBody;
@@ -19,11 +19,14 @@ public class PlayerMove : MonoBehaviour {
 	{
 		playerBody = GetComponent<Rigidbody2D>();
 		player = this.gameObject;
+		body = playerBody;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
+		if (pause) return;
+		
 		KeyboardMove();
 		MouseDirection ();
 
@@ -77,5 +80,4 @@ public class PlayerMove : MonoBehaviour {
 	{
 		return playerBody.velocity;
 	}
-		
 }

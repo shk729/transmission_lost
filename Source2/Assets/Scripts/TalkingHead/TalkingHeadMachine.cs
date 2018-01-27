@@ -11,7 +11,10 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	public GameObject headA;
 	public GameObject headB;
+	public GameController game;
 
+
+	private float scaleTime;
 
 	public void NextState(State state) {
 		currentState.Exit ();
@@ -21,6 +24,7 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		scaleTime = Time.timeScale;
 		panel.SetActive (false);
 		State first;
 		State state;
@@ -29,9 +33,12 @@ public class TalkingHeadMachine : MonoBehaviour {
 		first = new JustWaitState(this, 3);
 		state = first;
 		state = sayLev ("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
-		state = sayKesha("O, боже!!! Это же ЛЕВ!!!1" , state);
+		state = sayKesha("O, боже!!! Это же ЛЕВЪ!!!1 >:3" , state);
+		state = pause (true, state);
 		state = sayKesha ("Да, знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя.", state);
+		state = pause (false, state);
 		state = sayLev ("Вот сейчас и поймешь, приступай к осмотру.", state);
+		//state = pause (false, state);
 		state = wait (2, state);
 		state = sayKesha ("A это еще что за хрень?!", state);
 		state = sayLev ("а, теперь все понятно. Это, Майк, Hirudinea Kosmos, то бишь космические пиявки. Жрут электрооборудование, но не против и ремонтником закусить, так что мочи их смело! ", state);
@@ -60,12 +67,17 @@ public class TalkingHeadMachine : MonoBehaviour {
 	}
 
 	State sayLev(string msg, State afterState) {
-		afterState.next = new HeadTalkState (this, headA, "Lev >=3", msg);
+		afterState.next = new HeadTalkState (this, headA, "ЛевЪ", msg);
 		return afterState.next;
 	}
 
 	State sayKesha(string msg, State afterState) {
-		afterState.next = new HeadTalkState (this, headB, "Kesha", msg);
+		afterState.next = new HeadTalkState (this, headB, "Кеша", msg);
+		return afterState.next;
+	}
+
+	State pause(bool value, State afterState) {
+		afterState.next =  new PauseState (this, value);
 		return afterState.next;
 	}
 	
@@ -74,6 +86,17 @@ public class TalkingHeadMachine : MonoBehaviour {
 		currentState.Run ();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
 
 public interface State {
 	TalkingHeadMachine machine { get; set; }
@@ -93,16 +116,18 @@ public class HeadTalkState : State {
 
 	public TalkingHeadMachine machine { get; set; }
 	public State next { get; set; }
-	public int waitText = 2; // sec
+	public float waitText = 2; // sec
 	public int waitAfterText = 5; // sec
 
 	private float startTime; 
+	private float charPerSec = 1f / 50;
 
 	public HeadTalkState(TalkingHeadMachine curMachine, GameObject head, string name, string text) {
 		machine = curMachine;
 		this.text = text;
 		this.head = head;
 		this.name = name;
+		waitText = (float) text.Length * charPerSec;
 	}
 
 	public void Enter() {
@@ -130,20 +155,11 @@ public class HeadTalkState : State {
 	}
 
 	private void RenderText(float sec) {
-		float onePercent = (float)waitText / 100;
-		if (sec < onePercent) {
-			return;
-		}
-		float percent = sec / onePercent;
+		int count = Mathf.RoundToInt( sec / charPerSec );
 
-
-		int textCount = Mathf.RoundToInt( (text.Length / 100f) * percent );
-
-		if (textCount > text.Length)
-			textCount = text.Length;
-		if (textCount < 0)
-			textCount = 0;
-		machine.text.text = text.Substring (0, textCount );
+		if (count > text.Length)
+			count = text.Length;
+		machine.text.text = text.Substring (0, count);
 	}
 }
 	
@@ -182,3 +198,43 @@ public class JustWaitState : State {
 	}
 	public void Exit() {}
 }
+
+
+class PauseState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public bool pause;
+
+	public PauseState(TalkingHeadMachine curMachine, bool pause) {
+		this.pause = pause;
+		machine = curMachine;
+	}
+
+	public void Enter() {
+		if (pause) {
+			machine.game.Hold ();
+		} else {
+			machine.game.UnHold ();
+		}
+	}
+	public void Run () {
+		if (next != null) {
+			machine.NextState (next);
+		}
+	}
+	public void Exit() {
+		
+	}
+}
+
+/*
+class PauseState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public void Enter() {}
+	public void Run () {}
+	public void Exit() {} 
+}
+*/
