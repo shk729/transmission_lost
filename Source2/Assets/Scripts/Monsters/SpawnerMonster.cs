@@ -12,6 +12,10 @@ public class SpawnerMonster : MonoBehaviour {
 	private bool spawningProcess = false;
 
 
+	public void ActivateSpawner() {
+		spawningProcess = false;
+	}
+
 	void Start()
 	{
 		MonstersInitialization ();
@@ -43,12 +47,12 @@ public class SpawnerMonster : MonoBehaviour {
 
 	IEnumerator NextMonsterDelay(int i,float delay)
 	{
-		while (i<monstersList.Count) {
+		while (i< 2/*monstersList.Count*/) {
 			monstersList[i].gameObject.transform.position = transform.position;
 			monstersList[i].SetActive(true);
 			yield return new WaitForSeconds(delay);
 			i++;
-			StartCoroutine (NextMonsterDelay (i, monsterSpawnDelay));
+			//StartCoroutine (NextMonsterDelay (i, monsterSpawnDelay));
 		}
 	}
 

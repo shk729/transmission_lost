@@ -9,9 +9,6 @@ public class SpaceFollow : RigidPausable {
 
     private float delaylShift = 0.4f;	        	
 
-	public void Hold() {}
-	public void UnHold() {}
-
     void Awake()
     {
         player = GameObject.Find("Player").transform;

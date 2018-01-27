@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 	public Transform mainCamera;
+	public SpawnerMonster spawner;
 
 	public void Hold() {
 		RigidPausable[] bodies = Object.FindObjectsOfType<RigidPausable>();
