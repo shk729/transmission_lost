@@ -33,7 +33,8 @@ public class TalkingHeadMachine : MonoBehaviour {
 		first = new JustWaitState(this, 3);
 		state = first;
 		state = sayLev ("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
-		state = checkPOI ("pointOfInterest1", state);
+		//state = checkPOI ("pointOfInterest1", state);
+		state = pause (true, state);
 		state = sayKesha("O, боже!!! Это же ЛЕВЪ!!!1 >:3" , state);
 		state = allMobIsDead (state);
 		//state = playerInZone ("Zone_1", state);
