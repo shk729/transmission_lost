@@ -36,10 +36,10 @@ public class TalkingHeadMachine : MonoBehaviour {
 		state = checkPOI ("pointOfInterest1", state);
 		state = sayKesha("O, боже!!! Это же ЛЕВЪ!!!1 >:3" , state);
 		state = allMobIsDead (state);
-		state = playerInZone ("Zone_1", state);
+		//state = playerInZone ("Zone_1", state);
 		state = pause (true, state);
 		state = camera (-19.6f, 8.6f, state);
-		state = activateSpawner (state);
+		state = activateSpawner ("SpawnerMonster", state);
 		state = sayKesha ("Да, знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя.", state);
 		state = pause (false, state);
 		state = camera (0f, 0f, state);
@@ -93,8 +93,8 @@ public class TalkingHeadMachine : MonoBehaviour {
 		return afterState.next;
 	}
 
-	State activateSpawner(State afterState) {
-		afterState.next = new ActivateSpawnerState (this);
+	State activateSpawner(string name, State afterState) {
+		afterState.next = new ActivateSpawnerState (name, this);
 		return afterState.next;
 	}
 
@@ -288,13 +288,20 @@ class ActivateSpawnerState : State {
 	public TalkingHeadMachine machine { get; set; }
 	public State next { get; set; }
 
-	public ActivateSpawnerState(TalkingHeadMachine machine) {
+	private string name;
+	private SpawnerMonster spawner;
+
+
+	public ActivateSpawnerState(string name, TalkingHeadMachine machine) {
 		this.machine = machine;
+		this.name = name;
 	}
 
 	public void Enter() {
-		machine.game.spawner.ActivateSpawner ();
+		spawner = GameObject.Find ("/SceneObjects/" + name).GetComponent<SpawnerMonster> ();
+		spawner.ActivateSpawner ();
 	}
+
 	public void Run () {
 		if (next != null)
 			machine.NextState (next);
