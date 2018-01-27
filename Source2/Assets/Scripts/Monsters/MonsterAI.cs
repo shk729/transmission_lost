@@ -8,6 +8,7 @@ public class MonsterAI : MonoBehaviour {
 	public float monsterHealth = 100;
 	public float monsterSpeed = 0.2f;
 	public float damage = 10f;
+	private float rotationSpeed = 10f;
 
 	private Rigidbody2D enemy;
 	private GameObject player;
@@ -25,6 +26,7 @@ public class MonsterAI : MonoBehaviour {
 
 	void FixedUpdate ()
 	{	
+		
 		if (!agressive) {
 			Vector2 tempForce = transform.position - retranslator.transform.position;
 			transform.position = Vector3.Lerp (transform.position, retranslator.transform.position, Time.deltaTime * monsterSpeed);
@@ -41,6 +43,7 @@ public class MonsterAI : MonoBehaviour {
 				moveAngle = rotAngle * Mathf.Rad2Deg - 90;
 
 			Quaternion newRotation = Quaternion.Euler (0, 0, moveAngle);
+			transform.rotation = Quaternion.Slerp (transform.rotation, newRotation, Time.fixedDeltaTime * rotationSpeed);
 			enemy.freezeRotation = false;
 		
 		} else 
@@ -60,6 +63,7 @@ public class MonsterAI : MonoBehaviour {
 				moveAngle = rotAngle * Mathf.Rad2Deg - 90;
 
 			Quaternion newRotation = Quaternion.Euler (0, 0, moveAngle);
+			transform.rotation = Quaternion.Slerp (transform.rotation, newRotation, Time.fixedDeltaTime * rotationSpeed);
 			enemy.freezeRotation = false;
 		}
 	}
