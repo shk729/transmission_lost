@@ -24,7 +24,9 @@ GameObject:
   - component: {fileID: 60025790204929280}
   - component: {fileID: 114498804732292376}
   - component: {fileID: 114303604981047064}
+  - component: {fileID: 114364249710982422}
   - component: {fileID: 114090570698994632}
+  - component: {fileID: 82235807016363212}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -45,7 +47,7 @@ GameObject:
   - component: {fileID: 50133279949402782}
   - component: {fileID: 58103358086895470}
   - component: {fileID: 114032138670769324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +61,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1378529421332386}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.251, y: 0.005, z: 0}
+  m_LocalPosition: {x: 0.23, y: 0.79, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 0}
   m_Children: []
   m_Father: {fileID: 4965217579265526}
@@ -97,7 +99,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!50 &50267457659880012
 Rigidbody2D:
@@ -185,6 +187,86 @@ PolygonCollider2D:
     - - {x: 0.10403259, y: 0.34436974}
       - {x: 0.12403259, y: 0.32436973}
       - {x: 0.12403259, y: 0.33436972}
+--- !u!82 &82235807016363212
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1090280811872794}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8ed4e3e9eeb2ffa44904d7bfc8e4d50a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.82
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 1
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114032138670769324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f182ee98f095480a958174ad92bc2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseTexture: {fileID: 2800000, guid: 8b923e04ab8fe5244b100f8dc97680af, type: 3}
+  mouseTexture: {fileID: 2800000, guid: 11a2a5bbef8384ae299ed570239cadd8, type: 3}
 --- !u!114 &114303604981047064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,8 +307,19 @@ MonoBehaviour:
   bullet: {fileID: 1378529421332386}
   bulletSpeed: 1
   bulletImpulse: 300
-  shootSpeed: 1
+  shootSpeed: 0.2
   lastShotTime: 0
+--- !u!114 &114364249710982422
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1090280811872794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b79ffbcf3dd44ab5a2258172df65a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114498804732292376
 MonoBehaviour:
   m_ObjectHideFlags: 1

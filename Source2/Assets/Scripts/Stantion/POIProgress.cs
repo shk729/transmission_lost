@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerCollision : MonoBehaviour {
+public class POIProgress : MonoBehaviour {
 
 	[SerializeField]
 	private Slider POI_Slider;
