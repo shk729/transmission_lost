@@ -26,7 +26,8 @@ public class MonsterAI : RigidPausable {
 
 	void FixedUpdate ()
 	{	
-		
+		if (pause)
+			return;
 		if (!agressive) {
 			Vector2 tempForce = transform.position - retranslator.transform.position;
 			transform.position = Vector3.Lerp (transform.position, retranslator.transform.position, Time.deltaTime * monsterSpeed);
