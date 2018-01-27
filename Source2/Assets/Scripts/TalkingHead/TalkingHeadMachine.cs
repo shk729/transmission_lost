@@ -35,8 +35,10 @@ public class TalkingHeadMachine : MonoBehaviour {
 		state = sayLev ("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
 		state = sayKesha("O, боже!!! Это же ЛЕВЪ!!!1 >:3" , state);
 		state = pause (true, state);
+		state = camera (1f, 1f, state);
 		state = sayKesha ("Да, знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя.", state);
 		state = pause (false, state);
+		state = camera (0f, 0f, state);
 		state = sayLev ("Вот сейчас и поймешь, приступай к осмотру.", state);
 		//state = pause (false, state);
 		state = wait (2, state);
@@ -78,6 +80,11 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	State pause(bool value, State afterState) {
 		afterState.next =  new PauseState (this, value);
+		return afterState.next;
+	}
+
+	State camera(float x, float y, State afterState) {
+		afterState.next = new CameraPositionState (this, game.mainCamera, new Vector3 (x, y, game.mainCamera.position.z));
 		return afterState.next;
 	}
 	
@@ -226,6 +233,30 @@ class PauseState : State {
 	public void Exit() {
 		
 	}
+}
+
+class CameraPositionState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	private Vector3 pos;
+	private Transform camera;
+
+	public CameraPositionState (TalkingHeadMachine machine, Transform camera, Vector3 pos) {
+		this.machine = machine;
+		this.pos = pos;
+		this.camera = camera;
+	}
+
+	public void Enter() {
+		camera.position = pos;
+	}
+	public void Run () {
+		if (next != null) {
+			machine.NextState (next);
+		}
+	}
+	public void Exit() {} 
 }
 
 /*

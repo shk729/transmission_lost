@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4248414987045258}
   - component: {fileID: 212420153287080876}
+  - component: {fileID: 114884538159688554}
   - component: {fileID: 50133279949402782}
   - component: {fileID: 58103358086895470}
   - component: {fileID: 114032138670769324}
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitEffect: {fileID: 0}
   monsterDie: {fileID: 0}
+  damage: 30
 --- !u!114 &114090570698994632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,6 +236,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1f5cf66151b8453a989ebda7eebe8a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114884538159688554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1378529421332386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffea0a625f743041be598d62f39b26b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212280129500701882

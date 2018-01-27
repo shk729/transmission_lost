@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
+	public Transform mainCamera;
+
 	public void Hold() {
 		RigidPausable[] bodies = Object.FindObjectsOfType<RigidPausable>();
 		foreach (RigidPausable body in bodies) {
