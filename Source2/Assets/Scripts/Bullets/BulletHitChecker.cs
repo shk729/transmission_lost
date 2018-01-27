@@ -53,11 +53,7 @@ public class BulletHitChecker : MonoBehaviour
 	{
 		if (target.gameObject.tag == "Player") {
 			
-		} else if (target.gameObject.tag == "Monster") {
-
-
-
-		} else {
+		}  else {
 
 			//exlosion animation
 			ParticleSystem hitEffect_clone =  Instantiate(hitEffect, transform.position, transform.rotation); 
