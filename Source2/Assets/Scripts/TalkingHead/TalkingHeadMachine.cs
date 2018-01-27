@@ -34,6 +34,7 @@ public class TalkingHeadMachine : MonoBehaviour {
 		state = first;
 		state = sayLev ("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
 		state = sayKesha("O, боже!!! Это же ЛЕВЪ!!!1 >:3" , state);
+		state = allMobIsDead (state);
 		state = playerInZone ("Zone_1", state);
 		state = pause (true, state);
 		state = camera (-19.6f, 8.6f, state);
@@ -98,6 +99,11 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	State playerInZone(string zoneName, State afterState) {
 		afterState.next = new PlayerInZoneState (this, zoneName);
+		return afterState.next;
+	}
+
+	State allMobIsDead(State afterState) {
+		afterState.next = new AllMobIsDeadState (this);
 		return afterState.next;
 	}
 
@@ -315,6 +321,37 @@ class PlayerInZoneState : State {
 		}
 	}
 	public void Exit() {} 
+}
+
+class AllMobIsDeadState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	private float startTime;
+	private float checkEverySec = 0.5f;
+
+	public AllMobIsDeadState(TalkingHeadMachine machine) {
+		this.machine = machine;
+	}
+
+	public void Enter() {
+		startTime = Time.time;
+	}
+	public void Run () {
+		if (Time.time - startTime > checkEverySec) {
+			startTime = Time.time;
+			Check ();
+		}
+	}
+	public void Exit() {} 
+
+	private void Check() {
+		MonsterAI[] monsters = Object.FindObjectsOfType<MonsterAI> ();
+		if (monsters.Length == 0) {
+			machine.NextState (next);
+		}
+
+	}
 }
 
 
