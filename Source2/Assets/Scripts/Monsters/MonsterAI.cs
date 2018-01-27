@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterAI : MonoBehaviour {
+public class MonsterAI : RigidPausable {
 
 
 	public float monsterHealth = 100;
