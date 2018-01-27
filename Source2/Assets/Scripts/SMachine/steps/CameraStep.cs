@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraStep : MonoBehaviour {
+public class CameraStep : SMachineStep {
+	public GameController game;
+	public Vector2 position;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public override void Run ()	{
+		game.mainCamera.position = new Vector3 (position.x, position.y, game.mainCamera.position.z);
+		Done ();
 	}
 }
