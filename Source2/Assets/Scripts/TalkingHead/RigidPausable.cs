@@ -13,12 +13,14 @@ public class RigidPausable : MonoBehaviour {
 
 	public void Hold() {
 		pause = true;
-		body.simulated = false;
+		if (body != null)
+			body.simulated = false;
 	}
 
 	public void UnHold() {
 		pause = false;
-		body.simulated = true;
+		if (body != null)
+			body.simulated = true;
 	}
 
 

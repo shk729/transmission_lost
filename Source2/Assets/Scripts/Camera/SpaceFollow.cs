@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceFollow : MonoBehaviour {
+public class SpaceFollow : RigidPausable {
 
     private Transform player;
     private Transform space;
 
     private float delaylShift = 0.4f;	        	
+
+	public void Hold() {}
+	public void UnHold() {}
 
     void Awake()
     {
@@ -18,7 +21,8 @@ public class SpaceFollow : MonoBehaviour {
 
     void FixedUpdate()
     {
-
+		if (pause)
+			return;
         Vector3 tempCamera = transform.position;
         Vector3 tempSpace = space.position;
         Vector2 playerVelocity = PlayerMove.GetPlayerVelocity();
