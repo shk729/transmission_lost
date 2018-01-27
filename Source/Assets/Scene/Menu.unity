@@ -190,7 +190,7 @@ Prefab:
     - target: {fileID: 114409293575451516, guid: 8c75a9f09f5b7b1459c3753964d43494,
         type: 2}
       propertyPath: next
-      value: Pages/dummy
+      value: Scene/dummy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c75a9f09f5b7b1459c3753964d43494, type: 2}
@@ -532,7 +532,7 @@ Prefab:
     - target: {fileID: 114409293575451516, guid: 8c75a9f09f5b7b1459c3753964d43494,
         type: 2}
       propertyPath: next
-      value: Pages/exit
+      value: Scene/exit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c75a9f09f5b7b1459c3753964d43494, type: 2}
