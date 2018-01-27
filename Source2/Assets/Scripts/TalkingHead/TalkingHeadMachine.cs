@@ -123,8 +123,8 @@ public class TalkingHeadMachine : MonoBehaviour {
 		return afterState.next;
 	}
 
-	State activateSpawner(State afterState) {
-		afterState.next = new ActivateSpawnerState (this);
+	State activateSpawner(string name, State afterState) {
+		afterState.next = new ActivateSpawnerState (name, this);
 		return afterState.next;
 	}
 
@@ -318,18 +318,25 @@ class ActivateSpawnerState : State {
 	public TalkingHeadMachine machine { get; set; }
 	public State next { get; set; }
 
-	public ActivateSpawnerState(TalkingHeadMachine machine) {
+	private string name;
+	private SpawnerMonster spawner;
+
+
+	public ActivateSpawnerState(string name, TalkingHeadMachine machine) {
 		this.machine = machine;
+		this.name = name;
 	}
 
 	public void Enter() {
-		machine.game.spawner.ActivateSpawner ();
+		spawner = GameObject.Find ("/SceneObjects/" + name).GetComponent<SpawnerMonster> ();
+		spawner.ActivateSpawner ();
 	}
+
 	public void Run () {
 		if (next != null)
 			machine.NextState (next);
 	}
-	public void Exit() {} 
+	public void Exit() {}
 }
 
 
