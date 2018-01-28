@@ -109,7 +109,6 @@ public class JustWaitState : State {
 		waitSec = sec;
 	}
 
-
 	public void Enter() {
 		startTime = Time.time;
 	}
@@ -423,6 +422,39 @@ class WinState : State {
 		win.ShowStatus ();
 		if (next != null)
 			machine.NextState (next);
+	}
+	public void Exit() {} 
+}
+
+class DirectArrowState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public DirectionArrow arrow;
+
+	private bool active;
+	private string nameOfTarget;
+	private GameObject target;
+
+	public DirectArrowState (TalkingHeadMachine machine, DirectionArrow arrow, string nameOfTarget, bool active) {
+		this.machine = machine;
+		this.nameOfTarget = nameOfTarget;
+		this.active = active;
+		this.arrow = arrow;
+	}
+
+	public void Enter() {	}
+
+	public void Run () {
+		if (active) {
+			target = GameObject.Find (nameOfTarget);
+			arrow.gameObject.SetActive (true);
+			arrow.SetObjjectToDirection (target);
+		} else {
+			arrow.gameObject.SetActive (false);
+		}
+
+		machine.NextState (next);
 	}
 	public void Exit() {} 
 }

@@ -186,6 +186,8 @@ public class TalkingHeadMachine : MonoBehaviour {
 		state = win (state);
         // the end
 
+		// state = setArrow (true, "Satellite2", state);
+
         state.next = first;
 
         currentState = first;
@@ -261,6 +263,13 @@ public class TalkingHeadMachine : MonoBehaviour {
 		afterState.next = new RotateStationState (this);
 		return afterState.next;
 	}
+
+	State setArrow(bool activate, string target, State afterState) {
+		afterState.next = new DirectArrowState (this, game.arrow, target, activate);
+		return afterState.next;
+	}
+
+
 
 	// Update is called once per frame
 	void Update () {

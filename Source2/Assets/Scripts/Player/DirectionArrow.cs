@@ -10,11 +10,12 @@ public class DirectionArrow : MonoBehaviour {
 	void Start ()
 	{		
 		arrow = GetComponent<Transform> ();
-		destination = GameObject.Find("Retranslator").transform.position;
+		//destination = GameObject.Find("Retranslator").transform.position;
 	}
 
 	void FixedUpdate () {
-		
+		if (destination == null)
+			return;
 		Vector3 playerPosition = PlayerMove.GetPlayerPosition();
 		Vector2 moveDirection  = new Vector2(destination.x-playerPosition.x, destination.y-playerPosition.y);
 
@@ -33,5 +34,6 @@ public class DirectionArrow : MonoBehaviour {
 	public void SetObjjectToDirection(GameObject target)
 	{
 		destination = target.transform.position;
+
 	}
 }
