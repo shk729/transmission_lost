@@ -29,7 +29,7 @@ public class TalkingHeadMachine : MonoBehaviour {
 
         first = new JustWaitState(this, 1);
         state = first;
-         state = pause(true, state);
+        /* state = pause(true, state);
          state = sayLev("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
          state = sayKesha("Да знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя. ", state);
          state = sayLev("Вот сейчас и поймешь, приступай к осмотру.", state);
@@ -48,10 +48,11 @@ public class TalkingHeadMachine : MonoBehaviour {
          state = sayLev("Окей. Теперь, когда мы знаем причину поломки, то справиться с ремонтом будет нетрудно. Надо всего лишь вручную сориентировать станцию, откалибровать передачу ", state);
          state = sayLev("по четырем ретрансляторам и включить программу автонастройки. Плевое дело!", state);
          state = sayKesha("Ну да, не тебе же руками многотонную станцию крутить. ", state);
-        // стрелочка на ретранслятор нужна
-        state = sayLev("Ой, ну вот не надо тут! Крутить все равно двигатель ранца будет, а не ты. В общем приступай. Сначала сориентируй станцию на первый ретранслятор. Как только займешь нужное положение – запусти системы станции.", state);
+         state = setArrow(true, "Satellite1", state);
+         state = sayLev("Ой, ну вот не надо тут! Крутить все равно двигатель ранца будет, а не ты. В общем приступай. Сначала сориентируй станцию на первый ретранслятор. Как только займешь нужное положение – запусти системы станции.", state);
          state = sayKesha("Есть!", state);
          state = checkStationAngle(2,6, state);
+         state = setArrow(false, "Satellite1", state);
          state = pause(true, state);
          state = sayLev("Теперь внимательно! Сначала включай нейтронный актуатор, затем квантовый редупликатор и только в конце – тахионный эмиттер.", state);
          state = sayKesha("Это сейчас на каком языке было?!", state);
@@ -93,10 +94,11 @@ public class TalkingHeadMachine : MonoBehaviour {
          state = activateSpawner("SpawnerMonster3_02", state);
          state = sayKesha("Счас они у меня попляшут!", state);
           state = allMobIsDead(state);
-        // стрелочка на ретранслятор нужна
+        state = setArrow(true, "Satellite2", state);
         state = sayLev("Наводи на второй ретранслятор", state);
           state = checkStationAngle(268, 272, state);
-          state = sayLev("Запускай, красный пульт, зеленый пульт и синий пульт!", state);
+        state = setArrow(false, "Satellite2", state);
+        state = sayLev("Запускай, красный пульт, зеленый пульт и синий пульт!", state);
           state = sayKesha("Запускаю, красный, зеленый, синий.!", state);
           activateSpawner("SpawnerMonster1_03", state);
           state = checkPOI("pointOfInterestRed", state);
@@ -106,23 +108,25 @@ public class TalkingHeadMachine : MonoBehaviour {
          state = checkPOI("pointOfInterestBlue", state);
           state = sendRetranslatorWave (state);
           state = sayLev("Так, запуск есть, а ретранслятор ответа не дает. Ну-ка, слетай к нему да глянь в чем дело.", state);
-          // стрелочка на ретранслятор нужна
-          state = sayKesha("Так далеко же, заблужусь!", state);
+        state = setArrow(true, "Satellite2", state);
+        state = sayKesha("Так далеко же, заблужусь!", state);
           state = sayLev("Заблудишься – останешься без премии! Давай, пошевеливайся, а то опять пиявки налетят.", state);
           state = sayKesha("Эх, гоняют туда-сюда, как какого-то бессмертного пони…", state);
           state = playerInZone("Zone_2", state);
-         state = activateSpawner("SpawnerMonster3_03", state);
+        state = setArrow(false, "Satellite2", state);
+        state = activateSpawner("SpawnerMonster3_03", state);
          state = sayKesha("Вот же гады, они и ретранслятор теперь жрут. Ну сейчас вы у меня отведаете освежающей плазмы!", state);
           state = sayLev("И откуда спрашивается у тебя плазма может вылезти? У тебя же лазерный излучатель, специально чтоб станцию не попортить.", state);
           state = sayKesha("Нууу… ну и ладно, пусть будут яркие когерентные лучи любви!", state);
           state = allMobIsDead(state);
-          // стрелочка на станцию нужна
-          state = sayLev("Пока ты тут упражняешься в остроумии, твари опять начали грызть станцию…", state);
+        state = setArrow(true, "Retranslator", state);
+        state = sayLev("Пока ты тут упражняешься в остроумии, твари опять начали грызть станцию…", state);
          state = activateSpawner("SpawnerMonster1", state);
          state = activateSpawner("SpawnerMonster1_03", state);
          state = sayKesha("ДА ВОТ ЖЕ ГАДЫ!", state);
           state = allMobIsDead(state);
-          state = sayLev("так, ладно, теперь все должно заработать как надо. Давай, красный, зеленый, синий. ", state);
+        state = setArrow(false, "Retranslator", state);
+        state = sayLev("так, ладно, теперь все должно заработать как надо. Давай, красный, зеленый, синий. ", state);
           state = checkPOI("pointOfInterestRed", state);
          state = activateSpawner("SpawnerMonster1_01", state);
          state = checkPOI("pointOfInterestGreen", state);
@@ -132,12 +136,13 @@ public class TalkingHeadMachine : MonoBehaviour {
           state = sayLev("Во-во, не повторять ему.", state);
          state = sendRetranslatorWave (state);
           state = sayKesha("Пошла передача!", state);
-        // стрелочка на ретранслятор нужна
+        state = setArrow(true, "Satellite3", state);
         state = sayLev("Есть контакт, молоток! Еще две и все готово. Наводи на третий ретранслятор.", state);
         state = activateSpawner("SpawnerMonster4_01", state);
         state = activateSpawner("SpawnerMonster4_02", state);
         state = activateSpawner("SpawnerMonster4_02", state);
         state = checkStationAngle(178, 182, state);
+        state = setArrow(false, "Satellite3", state);
         state = sayKesha("Опять пиявки, счас я им!", state);
         state = allMobIsDead(state);
         state = sayLev("В этот раз все просто, красный, синий и зеленый, прям как светофор.", state);
@@ -172,15 +177,16 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = activateSpawner("SpawnerMonster4_02", state);
         state = checkPOI("pointOfInterestRed", state);
 		state = sendRetranslatorWave (state);
-        // стрелочка на ретранслятор нужна
+        state = setArrow(true, "Satellite4", state);*/
         state = sayLev("Так, идет сигнал, замечательно! Остался финальный рывок. Наводи на четвертый ретранслятор и жми синий, красный, зеленый. Тут уже точно, без ошибок.", state);
         state = checkStationAngle(80, 100, state);
+        state = setArrow(false, "Satellite4", state);
         state = sayKesha("Ну хорошо что наконец-то без ошибок. Так, нажимаем…", state);
         state = checkPOI("pointOfInterestBlue", state);
         state = checkPOI("pointOfInterestRed", state);
         state = checkPOI("pointOfInterestGreen", state);
 		state = sendRetranslatorWave (state);
-        // тут станция должна прокрутиться на 360 и взорвать все астероиды, заспавнив тучу мобов
+        state = rotateAndShootStation(state);
         state = activateSpawner("SpawnerMonster1", state);
         state = sayKesha("ДА ВЫ ИЗДЕВАЕТЕСЬ!!! Ктож это все хоронить-то будет?!", state);
         state = sayLev("Меньше трепа, больше стрельбы! Не дай им сломать станцию, да и себя тоже!", state);
@@ -200,8 +206,6 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = sayKesha("охххх…", state);
 		state = win (state);
         // the end
-
-		// state = setArrow (true, "Satellite2", state);
 
         state.next = first;
 
