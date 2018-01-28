@@ -47,7 +47,7 @@ public class SpawnerMonster : MonoBehaviour {
 
 	IEnumerator NextMonsterDelay(int i,float delay)
 	{
-		while (i< monstersList.Count) {
+		if (i< monstersList.Count) {
 			monstersList[i].gameObject.transform.position = transform.position;
 			monstersList[i].SetActive(true);
 			yield return new WaitForSeconds(delay);

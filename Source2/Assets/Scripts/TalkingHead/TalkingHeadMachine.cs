@@ -30,7 +30,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         first = new JustWaitState(this, 1);
         state = first;
 
-        /* state = pause(true, state);
+        state = pause(true, state);
 
 	
   
@@ -180,7 +180,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = activateSpawner("SpawnerMonster4_01", state);
         state = activateSpawner("SpawnerMonster4_02", state);
         state = checkPOI("pointOfInterestRed", state);
-		state = sendRetranslatorWave (state);*/
+		state = sendRetranslatorWave (state);
         state = setArrow(true, "Satellite4", state);
         state = sayLev("Так, идет сигнал, замечательно! Остался финальный рывок. Наводи на четвертый ретранслятор и жми синий, красный, зеленый. Тут уже точно, без ошибок.", state);
         state = checkStationAngle(88, 92, state);
@@ -192,7 +192,20 @@ public class TalkingHeadMachine : MonoBehaviour {
 		state = sendRetranslatorWave (state);
         state = rotateAndShootStation(state);
         state = destroyAsteroids (state);
-        state = activateSpawner("SpawnerMonster1", state);
+        state = activateSpawner("SpawnerMonster5_01", state);
+        state = activateSpawner("SpawnerMonster5_02", state);
+        state = activateSpawner("SpawnerMonster5_03", state);
+        state = activateSpawner("SpawnerMonster5_04", state);
+        state = activateSpawner("SpawnerMonster5_05", state);
+        state = activateSpawner("SpawnerMonster5_06", state);
+        state = activateSpawner("SpawnerMonster5_07", state);
+        state = activateSpawner("SpawnerMonster5_08", state);
+        state = activateSpawner("SpawnerMonster5_09", state);
+        state = activateSpawner("SpawnerMonster5_10", state);
+        state = activateSpawner("SpawnerMonster5_11", state);
+        state = activateSpawner("SpawnerMonster5_12", state);
+        state = activateSpawner("SpawnerMonster5_13", state);
+        state = activateSpawner("SpawnerMonster5_14", state);
         state = sayKesha("ДА ВЫ ИЗДЕВАЕТЕСЬ!!! Ктож это все хоронить-то будет?!", state);
         state = sayLev("Меньше трепа, больше стрельбы! Не дай им сломать станцию, да и себя тоже!", state);
         state = sayKesha("НУ ВСЕ, РЕДИСКИ КОСМИЧЕСКИЕ, СЕЙЧАС ВЫ ПОЗНАЕТЕ ВСЮ МЕРУ МОЕГО ГНЕВА!", state);
