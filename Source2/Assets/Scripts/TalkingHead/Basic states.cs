@@ -304,11 +304,25 @@ class CheckStationAngleState : State {
 
 	public void Enter() {}
 	public void Run () {
-		float stRotation = station.transform.rotation.z;
+		float stRotation = station.transform.rotation.eulerAngles.z;
+		Debug.Log ("Station rotation " + stRotation);
 		if (stRotation < max && stRotation > min) {
 			machine.NextState (next);
 		}
 	}
+	public void Exit() {} 
+}
+
+class ShootStationState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public ShootStationState(TalkingHeadMachine machine) {
+		this.machine = machine;
+	}
+
+	public void Enter() {}
+	public void Run () {}
 	public void Exit() {} 
 }
 

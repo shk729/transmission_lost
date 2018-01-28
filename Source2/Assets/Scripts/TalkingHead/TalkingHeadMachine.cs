@@ -12,6 +12,7 @@ public class TalkingHeadMachine : MonoBehaviour {
 	public GameObject headA;
 	public GameObject headB;
 	public GameController game;
+	public GameObject retranslator;
 
 	public void NextState(State state) {
 		currentState.Exit ();
@@ -21,7 +22,6 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		scaleTime = Time.timeScale;
 		panel.SetActive (false);
 		State first;
 		State state;
@@ -89,6 +89,8 @@ public class TalkingHeadMachine : MonoBehaviour {
         //	
         //	state = sayLev ("ладно, ладно! Сначала включай панель на правом боку станции, потом на левом и только после этого – пульт на днище. Не перепутай!", state);
         //	
+
+		// state = checkStationAngle (10, 20, state);  Вращение станции  по оси Z  (rotation  Z)
         state.next = first;
 
         currentState = first;
@@ -137,6 +139,11 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	State checkPOI(string poiName, State afterState) {
 		afterState.next = new POITriggerState (this, poiName);
+		return afterState.next;
+	}
+
+	State checkStationAngle(float min, float max, State afterState) {
+		afterState.next = new CheckStationAngleState (this, retranslator, min, max);
 		return afterState.next;
 	}
 
