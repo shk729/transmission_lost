@@ -37,7 +37,7 @@ public class BulletHitChecker : MonoBehaviour
 			ParticleSystem hitEffect_clone =  Instantiate(hitEffect, transform.position, transform.rotation); 
 			hitEffect_clone.gameObject.SetActive (true);
 			//GetComponent<AudioSource>().PlayOneShot(hitSound);
-			Destroy (hitEffect_clone, 0.8f);
+			Destroy (hitEffect_clone, hitEffect.duration);
 			Destroy (this.gameObject, 0f);
 		}
 	}
