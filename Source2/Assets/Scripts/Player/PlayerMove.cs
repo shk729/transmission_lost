@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerMove : RigidPausable {
 
+	[SerializeField]
+	private ParticleSystem Fire1, Fire2;
+
+
 	private GameObject player;
 	static Rigidbody2D playerBody;
 
@@ -47,7 +51,7 @@ public class PlayerMove : RigidPausable {
 		Vector3 eulerAngles = player.transform.rotation.eulerAngles;
 		float playerAngle = eulerAngles.z;
 		if (playerAngle > 180)
-			playerAngle -= 360;
+			playerAngle -= 360;	
 		float rotAngle = Mathf.Atan (mouseDirection.normalized.y / mouseDirection.normalized.x);
 
 		if (mouseDirection.normalized.x >= 0) moveAngle = rotAngle * Mathf.Rad2Deg - 90;
@@ -70,7 +74,8 @@ public class PlayerMove : RigidPausable {
 		if (inputX != 0 || inputY != 0)
 		{
 			moveDirection = new Vector2(inputX * forceScale, inputY * forceScale);
-			//PlayerMoveCalculation(moveDirection);
+			Fire1.Play();
+			Fire2.Play();
 		}
 
 		playerBody.AddForce (moveDirection * 1.5f);
