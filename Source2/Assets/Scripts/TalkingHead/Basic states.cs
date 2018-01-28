@@ -109,7 +109,6 @@ public class JustWaitState : State {
 		waitSec = sec;
 	}
 
-
 	public void Enter() {
 		startTime = Time.time;
 	}
@@ -370,9 +369,10 @@ class RotateStationState : State {
 	private float angle = 0;
 	private int angleMax = 360;
 	private float originalAngle;
-	private float step = 25f;
+	private float step = 5f;
 	private int cooldown = 25;
 	private int cooldownMax = 25;
+	private int repeatCount = 5;
 
 	public RotateStationState(TalkingHeadMachine machine) {
 		this.machine = machine;
@@ -381,16 +381,20 @@ class RotateStationState : State {
 	public void Enter() {
 		retranslator = GameObject.Find ("Retranslator");
 		angle = 0;
-		originalAngle = retranslator.transform.rotation.eulerAngles.z * Mathf.Rad2Deg;
+		originalAngle = retranslator.transform.rotation.eulerAngles.z ;
+		repeatCount = 5;
 	}
+
 	public void Run () {
 		if (angle > angleMax) {
+			angle = 0;
+			repeatCount--;
+		} 
+		if (repeatCount <= 0) {
 			machine.NextState (next);
 			return;
 		}
-
-		Debug.Log ("originalAngle + angle = " + (originalAngle + angle));
-		retranslator.transform.rotation = Quaternion.Euler (0f, 0f, Mathf.Deg2Rad * (originalAngle + angle));
+		retranslator.transform.rotation = Quaternion.Euler (0f, 0f, /*Mathf.Deg2Rad * */ (originalAngle + angle));
 		angle += step;
 		cooldown--;
 		if (cooldown <= 0) {
@@ -420,6 +424,39 @@ class WinState : State {
 		win.ShowStatus ();
 		if (next != null)
 			machine.NextState (next);
+	}
+	public void Exit() {} 
+}
+
+class DirectArrowState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public DirectionArrow arrow;
+
+	private bool active;
+	private string nameOfTarget;
+	private GameObject target;
+
+	public DirectArrowState (TalkingHeadMachine machine, DirectionArrow arrow, string nameOfTarget, bool active) {
+		this.machine = machine;
+		this.nameOfTarget = nameOfTarget;
+		this.active = active;
+		this.arrow = arrow;
+	}
+
+	public void Enter() {	}
+
+	public void Run () {
+		if (active) {
+			target = GameObject.Find (nameOfTarget);
+			arrow.gameObject.SetActive (true);
+			arrow.SetObjjectToDirection (target);
+		} else {
+			arrow.gameObject.SetActive (false);
+		}
+
+		machine.NextState (next);
 	}
 	public void Exit() {} 
 }

@@ -45,9 +45,11 @@ public class TalkingHeadMachine : MonoBehaviour {
          state = sayLev("Ты же в курсе что они тебя не слышат? Мало того что в вакууме звук не передается, так у этих милах и ушей-то нет!", state);
          state = sayKesha("Вот кто бы мог подумать!", state);
          state = allMobIsDead(state);
-         state = sayLev("Окей. Теперь, когда мы знаем причину поломки, то справиться с ремонтом будет нетрудно. Надо всего лишь вручную сориентировать станцию, откалибровать передачу по четырем ретрансляторам и включить программу автонастройки. Плевое дело!", state);
+         state = sayLev("Окей. Теперь, когда мы знаем причину поломки, то справиться с ремонтом будет нетрудно. Надо всего лишь вручную сориентировать станцию, откалибровать передачу ", state);
+         state = sayLev("по четырем ретрансляторам и включить программу автонастройки. Плевое дело!", state);
          state = sayKesha("Ну да, не тебе же руками многотонную станцию крутить. ", state);
-         state = sayLev("Ой, ну вот не надо тут! Крутить все равно двигатель ранца будет, а не ты. В общем приступай. Сначала сориентируй станцию на первый ретранслятор. Как только займешь нужное положение – запусти системы станции.", state);
+        // стрелочка на ретранслятор нужна
+        state = sayLev("Ой, ну вот не надо тут! Крутить все равно двигатель ранца будет, а не ты. В общем приступай. Сначала сориентируй станцию на первый ретранслятор. Как только займешь нужное положение – запусти системы станции.", state);
          state = sayKesha("Есть!", state);
          state = checkStationAngle(2,6, state);
          state = pause(true, state);
@@ -91,7 +93,8 @@ public class TalkingHeadMachine : MonoBehaviour {
          state = activateSpawner("SpawnerMonster3_02", state);
          state = sayKesha("Счас они у меня попляшут!", state);
           state = allMobIsDead(state);
-          state = sayLev("Наводи на второй ретранслятор", state);
+        // стрелочка на ретранслятор нужна
+        state = sayLev("Наводи на второй ретранслятор", state);
           state = checkStationAngle(268, 272, state);
           state = sayLev("Запускай, красный пульт, зеленый пульт и синий пульт!", state);
           state = sayKesha("Запускаю, красный, зеленый, синий.!", state);
@@ -129,6 +132,7 @@ public class TalkingHeadMachine : MonoBehaviour {
           state = sayLev("Во-во, не повторять ему.", state);
          state = sendRetranslatorWave (state);
           state = sayKesha("Пошла передача!", state);
+        // стрелочка на ретранслятор нужна
         state = sayLev("Есть контакт, молоток! Еще две и все готово. Наводи на третий ретранслятор.", state);
         state = activateSpawner("SpawnerMonster4_01", state);
         state = activateSpawner("SpawnerMonster4_02", state);
@@ -168,6 +172,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = activateSpawner("SpawnerMonster4_02", state);
         state = checkPOI("pointOfInterestRed", state);
 		state = sendRetranslatorWave (state);
+        // стрелочка на ретранслятор нужна
         state = sayLev("Так, идет сигнал, замечательно! Остался финальный рывок. Наводи на четвертый ретранслятор и жми синий, красный, зеленый. Тут уже точно, без ошибок.", state);
         state = checkStationAngle(80, 100, state);
         state = sayKesha("Ну хорошо что наконец-то без ошибок. Так, нажимаем…", state);
@@ -195,6 +200,8 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = sayKesha("охххх…", state);
 		state = win (state);
         // the end
+
+		// state = setArrow (true, "Satellite2", state);
 
         state.next = first;
 
@@ -271,6 +278,13 @@ public class TalkingHeadMachine : MonoBehaviour {
 		afterState.next = new RotateStationState (this);
 		return afterState.next;
 	}
+
+	State setArrow(bool activate, string target, State afterState) {
+		afterState.next = new DirectArrowState (this, game.arrow, target, activate);
+		return afterState.next;
+	}
+
+
 
 	// Update is called once per frame
 	void Update () {
