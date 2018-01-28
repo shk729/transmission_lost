@@ -48,7 +48,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = sayKesha("Ну да, не тебе же руками многотонную станцию крутить. ", state);
         state = sayLev("Ой, ну вот не надо тут! Крутить все равно двигатель ранца будет, а не ты. В общем приступай. Сначала сориентируй станцию на первый ретранслятор. Как только займешь нужное положение – запусти системы станции.", state);
         state = sayKesha("Есть!", state);
-
+        // тут нужен триггер на поворот станции
         state = pause(true, state);
         state = sayLev("Теперь внимательно! Сначала включай нейтронный актуатор, затем квантовый редупликатор и только в конце – тахионный эмиттер.", state);
         state = sayKesha("Это сейчас на каком языке было?!", state);
@@ -58,6 +58,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterest3", state);
         state = checkPOI("pointOfInterest2", state);
         state = checkPOI("pointOfInterest1", state);
+        // а тут - триггер на выстрел
         state = pause(true, state);
         state = activateSpawner("SpawnerMonster", state);
         state = camera(-19.6f, 8.6f, state);
@@ -76,6 +77,19 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterest1", state);
         state = sayKesha("Сигнал пошел!", state);
         state = sayLev("Подтверждаю, есть сигнал! Отлично, осталось еще три ретранслятора.", state);
+        state = wait(10, state);
+        state = activateSpawner("SpawnerMonster", state);
+        state = sayLev("Так, теперь давай наводи на второй ретранслятор… опа, опять пиявки! Расправься сначала с ними.", state);
+        state = sayKesha("Счас они у меня попляшут!", state);
+        state = allMobIsDead(state);
+        state = sayLev("Запускай, зеленый пульт, красный пульт и синий пульт!", state);
+        state = sayKesha("Запускаю, Зеленый, красный и синий!", state);
+        state = checkPOI("pointOfInterest2", state);
+        state = checkPOI("pointOfInterest3", state);
+        state = checkPOI("pointOfInterest1", state);
+        // а тут - триггер на выстрел
+        state = sayLev("Так, запуск есть, а ретранслятор ответа не дает. Ну-ка, слетай к нему да глянь в чем дело.", state);
+        state = sayKesha("Так далеко же, заблужусь!", state);
 
         //	state = camera (-19.6f, 8.6f, state);
         //	state = activateSpawner (state);
@@ -89,8 +103,6 @@ public class TalkingHeadMachine : MonoBehaviour {
         //	
         //	state = sayLev ("ладно, ладно! Сначала включай панель на правом боку станции, потом на левом и только после этого – пульт на днище. Не перепутай!", state);
         //	
-
-		// state = checkStationAngle (10, 20, state);  Вращение станции  по оси Z  (rotation  Z)
         state.next = first;
 
         currentState = first;
