@@ -297,8 +297,14 @@ class CheckStationAngleState : State {
 	public void Run () {
 		float stRotation = station.transform.rotation.eulerAngles.z;
 		Debug.Log ("Station rotation " + stRotation);
-		if (stRotation < max && stRotation > min) {
-			machine.NextState (next);
+		if (min < max) {
+			if (stRotation < max && stRotation > min) {
+				machine.NextState (next);
+			}
+		} else {
+			if (stRotation > max && stRotation < min) {
+				machine.NextState (next);
+			}
 		}
 	}
 	public void Exit() {} 
