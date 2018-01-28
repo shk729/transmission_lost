@@ -152,8 +152,8 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = camera(-15.5f, -17.5f, state);
         state = wait(1, state);
         state = killAll (state);// тут нужно убить пачку мобов скриптом
-        state = activateSpawner("SpawnerMonster4_05", state);
         state = pause(false, state);
+        state = activateSpawner("SpawnerMonster4_05", state);        
         state = sayKesha("ЧТООООАА?!!", state);
         state = sayLev("упс, похоже надо было сначала включить квантовый редупликатор… Короче, быстро избавься от этих… не знаю кого и запусти станцию еще раз!", state);
         state = allMobIsDead(state);
