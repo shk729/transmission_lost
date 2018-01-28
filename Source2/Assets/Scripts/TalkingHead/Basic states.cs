@@ -308,12 +308,19 @@ class ShootStationState : State {
 	public TalkingHeadMachine machine { get; set; }
 	public State next { get; set; }
 
+	private SignalSend stationSignal;
+
 	public ShootStationState(TalkingHeadMachine machine) {
 		this.machine = machine;
 	}
 
-	public void Enter() {}
-	public void Run () {}
+	public void Enter() {
+		stationSignal = GameObject.Find ("Retranslator").GetComponent (SignalSend);
+	}
+	public void Run () {
+		stationSignal.SendWave ();
+		machine.NextState (next);
+	}
 	public void Exit() {} 
 }
 

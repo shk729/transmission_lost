@@ -227,6 +227,11 @@ public class TalkingHeadMachine : MonoBehaviour {
 		return afterState.next;
 	}
 
+	State sendRetranslatorWave(State afterState) {
+		afterState.next = new ShootStationState (this);
+		return afterState.next;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		currentState.Run ();
