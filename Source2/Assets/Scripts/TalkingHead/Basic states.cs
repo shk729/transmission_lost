@@ -273,6 +273,7 @@ class POITriggerState : State {
 
 
 	public void Enter() {
+		poi.ResetPOI ();
 		poi = GameObject.Find ("Retranslator/Canvas/" + poi_name).GetComponent<POIProgress>();
 		poi.readyForCheck = true;
 	}
@@ -282,8 +283,7 @@ class POITriggerState : State {
 		}
 	}
 	public void Exit() {
-		poi.completed = false;
-		poi.readyForCheck = false;
+		poi.ResetPOI ();
 	} 
 }
 
@@ -377,10 +377,13 @@ class RotateStationState : State {
 	public void Enter() {
 		retranslator = GameObject.Find ("Retranslator");
 		angle = 0;
-		//originalAngle = retranslator.transform.Rotate
+		originalAngle = retranslator.transform.rotation.z * Mathf.Rad2Deg;
 	}
 	public void Run () {
-		
+		if (angle > angleMax) {
+			//machine.
+			return;
+		}
 	}
 	public void Exit() {} 
 }

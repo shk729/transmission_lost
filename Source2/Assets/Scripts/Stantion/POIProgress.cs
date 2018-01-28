@@ -17,6 +17,13 @@ public class POIProgress : MonoBehaviour {
 	public bool readyForCheck = false;
 	public bool completed = false;
 
+	public void ResetPOI() {
+		curValue_slider = 0;
+		POI_Slider.value = 0;
+		readyForCheck = false;
+		completed = false;
+	}
+
 	void Start()
 	{
 		POI_Slider_initialization ();
