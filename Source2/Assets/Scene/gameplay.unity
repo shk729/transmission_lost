@@ -949,7 +949,7 @@ GameObject:
   - component: {fileID: 563417730}
   - component: {fileID: 563417729}
   m_Layer: 8
-  m_Name: pointOfInterest2
+  m_Name: pointOfInterestGreen
   m_TagString: POI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -986,6 +986,8 @@ MonoBehaviour:
   maxValue_slider: 500
   POIinitialRadius: 0.03
   POIradius: 0.3
+  readyForCheck: 0
+  completed: 0
 --- !u!58 &563417730
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2849,6 +2851,7 @@ MonoBehaviour:
   headA: {fileID: 2022031433}
   headB: {fileID: 1246773181}
   game: {fileID: 1428139401}
+  retranslator: {fileID: 0}
 --- !u!4 &1428139400
 Transform:
   m_ObjectHideFlags: 0
@@ -5201,7 +5204,7 @@ GameObject:
   - component: {fileID: 1939173384}
   - component: {fileID: 1939173383}
   m_Layer: 8
-  m_Name: pointOfInterest1
+  m_Name: pointOfInterestBlue
   m_TagString: POI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5238,6 +5241,8 @@ MonoBehaviour:
   maxValue_slider: 500
   POIinitialRadius: 0.03
   POIradius: 0.3
+  readyForCheck: 0
+  completed: 0
 --- !u!58 &1939173384
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -6032,7 +6037,7 @@ GameObject:
   - component: {fileID: 2144855613}
   - component: {fileID: 2144855612}
   m_Layer: 8
-  m_Name: pointOfInterest3
+  m_Name: pointOfInterestRed
   m_TagString: POI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6069,6 +6074,8 @@ MonoBehaviour:
   maxValue_slider: 500
   POIinitialRadius: 0.03
   POIradius: 0.3
+  readyForCheck: 0
+  completed: 0
 --- !u!58 &2144855613
 CircleCollider2D:
   m_ObjectHideFlags: 0
