@@ -29,7 +29,7 @@ public class TalkingHeadMachine : MonoBehaviour {
 
         first = new JustWaitState(this, 1);
         state = first;
-        state = pause(true, state);
+       /* state = pause(true, state);
         state = sayLev("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
         state = sayKesha("Да знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя. ", state);
         state = sayLev("Вот сейчас и поймешь, приступай к осмотру.", state);
@@ -84,26 +84,30 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterestBlue", state);
         state = sayKesha("Сигнал пошел!", state);
         state = sendRetranslatorWave(state);
-        state = sayLev("Подтверждаю, есть сигнал! Отлично, осталось еще три ретранслятора.", state);
+        state = sayLev("Подтверждаю, есть сигнал! Отлично, осталось еще три ретранслятора.", state); */
          state = wait(10, state);
-         state = activateSpawner("SpawnerMonster1", state);
+         state = activateSpawner("SpawnerMonster3_1", state);
+         state = activateSpawner("SpawnerMonster3_2", state);
          state = sayLev("Так, теперь давай наводи на второй ретранслятор… опа, опять пиявки! Расправься сначала с ними.", state);
          state = sayKesha("Счас они у меня попляшут!", state);
          state = allMobIsDead(state);
          state = sayLev("Наводи на второй ретранслятор", state);
-         state = checkStationAngle(260, 280, state);
+         state = checkStationAngle(268, 272, state);
          state = sayLev("Запускай, красный пульт, зеленый пульт и синий пульт!", state);
          state = sayKesha("Запускаю, красный, зеленый, синий.!", state);
+         activateSpawner("SpawnerMonster1_03", state);
          state = checkPOI("pointOfInterestRed", state);
-         state = checkPOI("pointOfInterestGreen", state);
-         state = checkPOI("pointOfInterestBlue", state);
+        activateSpawner("SpawnerMonster1_01", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = activateSpawner("SpawnerMonster3_1", state);
+        state = checkPOI("pointOfInterestBlue", state);
 		 state = sendRetranslatorWave (state);
          state = sayLev("Так, запуск есть, а ретранслятор ответа не дает. Ну-ка, слетай к нему да глянь в чем дело.", state);
          // стрелочка на ретранслятор нужна
          state = sayKesha("Так далеко же, заблужусь!", state);
          state = sayLev("Заблудишься – останешься без премии! Давай, пошевеливайся, а то опять пиявки налетят.", state);
          state = sayKesha("Эх, гоняют туда-сюда, как какого-то бессмертного пони…", state);
-         state = activateSpawner("SpawnerMonster1", state);
+         state = activateSpawner("SpawnerMonster3_03", state);
          state = playerInZone("Zone_1", state);
          state = sayKesha("Вот же гады, они и ретранслятор теперь жрут. Ну сейчас вы у меня отведаете освежающей плазмы!", state);
          state = sayLev("И откуда спрашивается у тебя плазма может вылезти? У тебя же лазерный излучатель, специально чтоб станцию не попортить.", state);
