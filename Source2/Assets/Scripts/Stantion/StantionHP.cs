@@ -9,7 +9,7 @@ public class StantionHP : MonoBehaviour {
 	public Slider stantionHPbar;
 
 	public float curValue_slider;
-	private float maxValue_slider = 2000f;
+	public float maxValue_slider = 2000f;
 
 	void Start()
 	{
