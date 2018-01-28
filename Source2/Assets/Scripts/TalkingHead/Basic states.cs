@@ -368,7 +368,9 @@ class RotateStationState : State {
 	private float angle = 0;
 	private int angleMax = 360;
 	private float originalAngle;
-	private float step = 0.5f;
+	private float step = 25f;
+	private int cooldown = 25;
+	private int cooldownMax = 25;
 
 	public RotateStationState(TalkingHeadMachine machine) {
 		this.machine = machine;
@@ -377,12 +379,21 @@ class RotateStationState : State {
 	public void Enter() {
 		retranslator = GameObject.Find ("Retranslator");
 		angle = 0;
-		originalAngle = retranslator.transform.rotation.z * Mathf.Rad2Deg;
+		originalAngle = retranslator.transform.rotation.eulerAngles.z * Mathf.Rad2Deg;
 	}
 	public void Run () {
 		if (angle > angleMax) {
-			//machine.
+			machine.NextState (next);
 			return;
+		}
+
+		Debug.Log ("originalAngle + angle = " + (originalAngle + angle));
+		retranslator.transform.rotation = Quaternion.Euler (0f, 0f, Mathf.Deg2Rad * (originalAngle + angle));
+		angle += step;
+		cooldown--;
+		if (cooldown <= 0) {
+			cooldown = cooldownMax;
+			retranslator.GetComponent<SignalSend> ().SendWave ();
 		}
 	}
 	public void Exit() {} 

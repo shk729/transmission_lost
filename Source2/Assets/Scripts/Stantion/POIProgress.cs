@@ -72,6 +72,8 @@ public class POIProgress : MonoBehaviour {
 
 	void POIchecking ()
 	{
+		if (!readyForCheck)
+			return;
 		curValue_slider++;
 		POI_Slider.value = curValue_slider;
 
