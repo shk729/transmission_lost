@@ -34,6 +34,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = sayKesha("да знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя. ", state);
         state = sayLev("Вот сейчас и поймешь, приступай к осмотру.", state);
         state = pause(false, state);
+        state = activateSpawner("SpawnerMonster1", state);
         state = playerInZone("Zone_1", state);
         state = pause(true, state);
         state = camera(-19.6f, 8.6f, state);
@@ -60,7 +61,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterestBlue", state);
         // а тут - триггер на выстрел
         state = pause(true, state);
-        state = activateSpawner("SpawnerMonster", state);
+        state = activateSpawner("SpawnerMonster1", state);
         state = camera(-19.6f, 8.6f, state);
         state = sayKesha("Это что еще за нафиг?!", state);
         state = sayLev("Ого, это ж как наша станция на местные астероиды влияет! Разберись с ними, и запускай еще раз.", state);
@@ -78,7 +79,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = sayKesha("Сигнал пошел!", state);
         state = sayLev("Подтверждаю, есть сигнал! Отлично, осталось еще три ретранслятора.", state);
         state = wait(10, state);
-        state = activateSpawner("SpawnerMonster", state);
+        state = activateSpawner("SpawnerMonster1", state);
         state = sayLev("Так, теперь давай наводи на второй ретранслятор… опа, опять пиявки! Расправься сначала с ними.", state);
         state = sayKesha("Счас они у меня попляшут!", state);
         state = allMobIsDead(state);
@@ -95,13 +96,13 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = sayKesha("Так далеко же, заблужусь!", state);
         state = sayLev("Заблудишься – останешься без премии! Давай, пошевеливайся, а то опять пиявки налетят.", state);
         state = sayKesha("Эх, гоняют туда-сюда, как какого-то бессмертного пони…", state);
-        state = activateSpawner("SpawnerMonster", state);
+        state = activateSpawner("SpawnerMonster1", state);
         state = playerInZone("Zone_1", state);
         state = sayKesha("Вот же гады, они и ретранслятор теперь жрут. Ну сейчас вы у меня отведаете освежающей плазмы!", state);
         state = sayLev("И откуда спрашивается у тебя плазма может вылезти? У тебя же лазерный излучатель, специально чтоб станцию не попортить.", state);
         state = sayKesha("Нууу… ну и ладно, пусть будут яркие когерентные лучи любви!", state);
         state = allMobIsDead(state);
-        state = activateSpawner("SpawnerMonster", state);
+        state = activateSpawner("SpawnerMonster1", state);
         // стрелочка на станцию нужна
         state = sayLev("Пока ты тут упражняешься в остроумии, твари опять начали грызть станцию…", state);
         state = sayKesha("ДА ВОТ ЖЕ ГАДЫ!", state);
@@ -115,7 +116,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         // а тут - триггер на выстрел
         state = sayKesha("Пошла передача!", state);
         state = sayLev("Есть контакт, молоток! Еще две и все готово. Наводи на третий ретранслятор.", state);
-        state = activateSpawner("SpawnerMonster", state);
+        state = activateSpawner("SpawnerMonster1", state);
         state = checkStationAngle(170, 190, state);
         state = sayKesha("Опять пиявки, счас я им!", state);
         state = allMobIsDead(state);
@@ -128,10 +129,10 @@ public class TalkingHeadMachine : MonoBehaviour {
         // а тут - триггер на выстрел
         state = sayKesha("Есть, пошел сигнал!", state);
         state = pause(true, state);
-        state = activateSpawner("SpawnerMonster", state);
+        state = activateSpawner("SpawnerMonster1", state);
         state = camera(-19.6f, 8.6f, state);
         // тут нужно убить пачку мобов скриптом
-        state = activateSpawner("SpawnerMonster", state);
+        state = activateSpawner("SpawnerMonster1", state);
         state = pause(false, state);
         state = sayKesha("ЧТООООАА?!!", state);
         state = sayLev("упс, похоже надо было сначала включить квантовый редупликатор… Короче, быстро избавься от этих… не знаю кого и запусти станцию еще раз!", state);
@@ -151,7 +152,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterestGreen", state);
         // а тут - триггер на выстрел
         // тут станция должна прокрутиться на 360 и взорвать все астероиды, заспавнив тучу мобов
-        state = activateSpawner("SpawnerMonster", state);
+        state = activateSpawner("SpawnerMonster1", state);
         state = sayKesha("ДА ВЫ ИЗДЕВАЕТЕСЬ!!! Ктож это все хоронить-то будет?!", state);
         state = sayLev("Меньше трепа, больше стрельбы! Не дай им сломать станцию, да и себя тоже!", state);
         state = sayKesha("НУ ВСЕ, РЕДИСКИ КОСМИЧЕСКИЕ, СЕЙЧАС ВЫ ПОЗНАЕТЕ ВСЮ МЕРУ МОЕГО ГНЕВА!", state);
