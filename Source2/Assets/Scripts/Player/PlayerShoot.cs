@@ -50,7 +50,7 @@ public class PlayerShoot : RigidPausable {
 			bulletClone.gameObject.SetActive (true);
 
 			bulletClone.GetComponent<Rigidbody2D>().AddForce(mouseDirection.normalized * bulletSpeed);
-			Destroy(bulletClone, 10.0f);
+			Destroy(bulletClone, 4.0f);
 
 			lastShotTime = Time.time;
 		}
