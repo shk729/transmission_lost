@@ -183,7 +183,7 @@ class ActivateSpawnerState : State {
 	}
 
 	public void Enter() {
-		spawner = GameObject.Find ("/SceneObjects/" + name).GetComponent<SpawnerMonster> ();
+		spawner = GameObject.Find ("/SceneObjects/Spawners/" + name).GetComponent<SpawnerMonster> ();
 		spawner.ActivateSpawner ();
 	}
 
