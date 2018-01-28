@@ -1397,8 +1397,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 790365278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.563416, y: 2.4450073, z: 87.457756}
-  m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 2058903371}
   - {fileID: 372487541}
@@ -3068,6 +3068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1492139266}
   spawner: {fileID: 235015514}
+  arrow: {fileID: 1872574711}
 --- !u!1 &1439028189
 GameObject:
   m_ObjectHideFlags: 0
@@ -4967,12 +4968,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3161416}
+  - {fileID: 3161416}
+  - {fileID: 3161416}
+  - {fileID: 3161416}
+  - {fileID: 3161416}
+  - {fileID: 3161416}
   monsterSpawnDelay: 0.2
 --- !u!4 &1834397127 stripped
 Transform:
