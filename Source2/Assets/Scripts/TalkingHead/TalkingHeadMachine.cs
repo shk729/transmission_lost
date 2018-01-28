@@ -12,9 +12,7 @@ public class TalkingHeadMachine : MonoBehaviour {
 	public GameObject headA;
 	public GameObject headB;
 	public GameController game;
-
-
-	private float scaleTime;
+	public GameObject retranslator;
 
 	public void NextState(State state) {
 		currentState.Exit ();
@@ -24,49 +22,159 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		scaleTime = Time.timeScale;
 		panel.SetActive (false);
 		State first;
 		State state;
 		State nextState;
 
-		first = new JustWaitState(this, 3);
-		state = first;
-		state = sayLev ("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
-		state = checkPOI ("pointOfInterest1", state);
-		state = sayKesha("O, боже!!! Это же ЛЕВЪ!!!1 >:3" , state);
-		state = allMobIsDead (state);
-		state = playerInZone ("Zone_1", state);
-		state = pause (true, state);
-		state = camera (-19.6f, 8.6f, state);
-		state = activateSpawner (state);
-		state = sayKesha ("Да, знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя.", state);
-		state = pause (false, state);
-		state = camera (0f, 0f, state);
-		//state = activateSpawner (state);
-		state = sayLev ("Вот сейчас и поймешь, приступай к осмотру.", state);
-		//state = pause (false, state);
-		state = wait (2, state);
-		state = sayKesha ("A это еще что за хрень?!", state);
-		state = sayLev ("а, теперь все понятно. Это, Майк, Hirudinea Kosmos, то бишь космические пиявки. Жрут электрооборудование, но не против и ремонтником закусить, так что мочи их смело! ", state);
-		state = sayKesha ("Вот вам, твари инопланетные!", state);
-		state = sayLev ("ты же в курсе что они тебя не слышат? Мало того что в вакууме звук не передается, так у этих милах и ушей-то нет!", state);
-		state = sayKesha ("Вот кто бы мог подумать!", state);
-		state = sayLev ("окей. Теперь, когда мы знаем причину поломки, то правиться с ремонтом будет нетрудно. Надо всего лишь вручную сориентировать станцию, откалибровать передачу по четырем ретрансляторам и включить программу автонастройки. Плевое дело!", state);
+        first = new JustWaitState(this, 3);
+        state = first;
+        state = pause(true, state);
+        state = sayLev("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
+        state = sayKesha("да знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя. ", state);
+        state = sayLev("Вот сейчас и поймешь, приступай к осмотру.", state);
+        state = pause(false, state);
+        state = playerInZone("Zone_1", state);
+        state = pause(true, state);
+        state = camera(-19.6f, 8.6f, state);
+        state = sayKesha("A это еще что за хрень?!", state);
+        state = sayLev("А, теперь все понятно. Это, Иннокентий, Hirudinea Kosmos, то бишь космические пиявки. Жрут электрооборудование, но не против и ремонтником закусить, так что мочи их смело! ", state);
+        state = pause(false, state);
+        state = sayKesha("Вот вам, твари инопланетные!", state);
+        state = sayLev("Ты же в курсе что они тебя не слышат? Мало того что в вакууме звук не передается, так у этих милах и ушей-то нет!", state);
+        state = sayKesha("Вот кто бы мог подумать!", state);
+        state = allMobIsDead(state);
+        state = sayLev("Окей. Теперь, когда мы знаем причину поломки, то правиться с ремонтом будет нетрудно. Надо всего лишь вручную сориентировать станцию, откалибровать передачу по четырем ретрансляторам и включить программу автонастройки. Плевое дело!", state);
+        state = sayKesha("Ну да, не тебе же руками многотонную станцию крутить. ", state);
+        state = sayLev("Ой, ну вот не надо тут! Крутить все равно двигатель ранца будет, а не ты. В общем приступай. Сначала сориентируй станцию на первый ретранслятор. Как только займешь нужное положение – запусти системы станции.", state);
+        state = sayKesha("Есть!", state);
+        state = checkStationAngle(10,350, state);
+        state = pause(true, state);
+        state = sayLev("Теперь внимательно! Сначала включай нейтронный актуатор, затем квантовый редупликатор и только в конце – тахионный эмиттер.", state);
+        state = sayKesha("Это сейчас на каком языке было?!", state);
+        state = sayLev("Ладно, ладно! Сначала включай красную панель на правом боку станции, потом зеленую на левом и только после этого – синий пульт на днище. Не перепутай!", state);
+        state = pause(false, state);
+        state = sayKesha("Хорошо, сейчас…", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestBlue", state);
+        // а тут - триггер на выстрел
+        state = pause(true, state);
+        state = activateSpawner("SpawnerMonster", state);
+        state = camera(-19.6f, 8.6f, state);
+        state = sayKesha("Это что еще за нафиг?!", state);
+        state = sayLev("Ого, это ж как наша станция на местные астероиды влияет! Разберись с ними, и запускай еще раз.", state);
+        state = pause(false, state);
+        state = allMobIsDead(state);
+        state = sayKesha("Ффух, здоровенные, гады. Ладно, приступаю к запуску.", state);
+        state = sayLev("Давай, сначала ре… тьфу, короче зеленый пульт, красный пульт и синий пульт!", state);
+        state = sayKesha("Принято, зеленый, красный, синий. Так бы сразу, а то выражается, понимаешь… ", state);
+        state = sayLev("Я все слышу!", state);
+        state = sayKesha("Будет исполнено, Лев Михалыч!", state);
+        state = sayLev("Так-то лучше…", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestBlue", state);
+        state = sayKesha("Сигнал пошел!", state);
+        state = sayLev("Подтверждаю, есть сигнал! Отлично, осталось еще три ретранслятора.", state);
+        state = wait(10, state);
+        state = activateSpawner("SpawnerMonster", state);
+        state = sayLev("Так, теперь давай наводи на второй ретранслятор… опа, опять пиявки! Расправься сначала с ними.", state);
+        state = sayKesha("Счас они у меня попляшут!", state);
+        state = allMobIsDead(state);
+        state = sayLev("Наводи на второй ретранслятор", state);
+        state = checkStationAngle(260, 280, state);
+        state = sayLev("Запускай, красный пульт, зеленый пульт и синий пульт!", state);
+        state = sayKesha("Запускаю, красный, зеленый, синий.!", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestBlue", state);
+        // а тут - триггер на выстрел
+        state = sayLev("Так, запуск есть, а ретранслятор ответа не дает. Ну-ка, слетай к нему да глянь в чем дело.", state);
+        // стрелочка на ретранслятор нужна
+        state = sayKesha("Так далеко же, заблужусь!", state);
+        state = sayLev("Заблудишься – останешься без премии! Давай, пошевеливайся, а то опять пиявки налетят.", state);
+        state = sayKesha("Эх, гоняют туда-сюда, как какого-то бессмертного пони…", state);
+        state = activateSpawner("SpawnerMonster", state);
+        state = playerInZone("Zone_1", state);
+        state = sayKesha("Вот же гады, они и ретранслятор теперь жрут. Ну сейчас вы у меня отведаете освежающей плазмы!", state);
+        state = sayLev("И откуда спрашивается у тебя плазма может вылезти? У тебя же лазерный излучатель, специально чтоб станцию не попортить.", state);
+        state = sayKesha("Нууу… ну и ладно, пусть будут яркие когерентные лучи любви!", state);
+        state = allMobIsDead(state);
+        state = activateSpawner("SpawnerMonster", state);
+        // стрелочка на станцию нужна
+        state = sayLev("Пока ты тут упражняешься в остроумии, твари опять начали грызть станцию…", state);
+        state = sayKesha("ДА ВОТ ЖЕ ГАДЫ!", state);
+        state = allMobIsDead(state);
+        state = sayLev("так, ладно, теперь все должно заработать как надо. Давай, красный, зеленый, синий. ", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestBlue", state);
+        state = sayKesha("Помню я, можно по два раза не повторять. Красный, зеленый и… ну этот, как его там, забыл.", state);
+        state = sayLev("Во-во, не повторять ему.", state);
+        // а тут - триггер на выстрел
+        state = sayKesha("Пошла передача!", state);
+        state = sayLev("Есть контакт, молоток! Еще две и все готово. Наводи на третий ретранслятор.", state);
+        state = activateSpawner("SpawnerMonster", state);
+        state = checkStationAngle(170, 190, state);
+        state = sayKesha("Опять пиявки, счас я им!", state);
+        state = allMobIsDead(state);
+        state = sayLev("В этот раз все просто, красный, синий и зеленый, прям как светофор.", state);
+        state = sayKesha("Это что за светофор такой, с синим-то?", state);
+        state = sayLev("Космический! Не умничай тут, настраивай.", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestBlue", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        // а тут - триггер на выстрел
+        state = sayKesha("Есть, пошел сигнал!", state);
+        state = pause(true, state);
+        state = activateSpawner("SpawnerMonster", state);
+        state = camera(-19.6f, 8.6f, state);
+        // тут нужно убить пачку мобов скриптом
+        state = activateSpawner("SpawnerMonster", state);
+        state = pause(false, state);
+        state = sayKesha("ЧТООООАА?!!", state);
+        state = sayLev("упс, похоже надо было сначала включить квантовый редупликатор… Короче, быстро избавься от этих… не знаю кого и запусти станцию еще раз!", state);
+        state = allMobIsDead(state);
+        state = sayKesha("А точно надо?", state);
+        state = sayLev("Надо, Кеша, надо… Как светофор, только наоборот, зеленый, синий, красный.", state);
+        state = sayKesha("Ладно…", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestBlue", state);
+        state = checkPOI("pointOfInterestRed", state);
+        // а тут - триггер на выстрел
+        state = sayLev("Так, идет сигнал, замечательно! Остался финальный рывок. Наводи на четвертый ретранслятор и жми синий, красный, зеленый. Тут уже точно, без ошибок.", state);
+        state = checkStationAngle(80, 100, state);
+        state = sayKesha("Ну хорошо что наконец-то без ошибок. Так, нажимаем…", state);
+        state = checkPOI("pointOfInterestBlue", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        // а тут - триггер на выстрел
+        // тут станция должна прокрутиться на 360 и взорвать все астероиды, заспавнив тучу мобов
+        state = activateSpawner("SpawnerMonster", state);
+        state = sayKesha("ДА ВЫ ИЗДЕВАЕТЕСЬ!!! Ктож это все хоронить-то будет?!", state);
+        state = sayLev("Меньше трепа, больше стрельбы! Не дай им сломать станцию, да и себя тоже!", state);
+        state = sayKesha("НУ ВСЕ, РЕДИСКИ КОСМИЧЕСКИЕ, СЕЙЧАС ВЫ ПОЗНАЕТЕ ВСЮ МЕРУ МОЕГО ГНЕВА!", state);
+        state = wait(30, state);
+        state = sayLev("Они так и будут лезть! Запускай передачу еще раз, аварийная частота – красный, зеленый, красный! Иначе конец!", state);
+        state = sayKesha("Сейчас, мне бы только успеть…", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestRed", state);
+        // а тут - триггер на выстрел
+        // тут нужно убить всех мобов
+        state = sayKesha("Ох, ну и толпы же их были однако...", state);
+        state = sayLev("Ладно, все хорошо, что хорошо заканчивается. Возвращайся на челнок, на отгул ты себе сегодня точно заработал.", state);
+        state = sayKesha("…И на премию!", state);
+        state = sayLev("Еще чего, перетопчешься. Давай, сегодня еще 4 спутника облететь надо.", state);
+        state = sayKesha("охххх…", state);
+        // the end
 
-		state = sayKesha ("ну да, не тебе же руками многотонную станцию крутить. ", state);
-		state = sayLev ("Ой, ну вот не надо тут! Крутить все равно двигатель ранца будет, а не ты. В общем приступай. Сначала сориентируй станцию на первый ретранслятор. Как только займешь нужное положение – запусти системы станции.", state);
-		state = sayKesha ("Есть!", state);
-		state = wait (2, state);
-		state = sayLev ("теперь внимательно! Сначала включай нейтронный актуатор, затем квантовый редупликатор и только в конце – квантовый эмиттер.", state);
-		state = sayKesha ("это сейчас на каком языке было?!", state);
-		state = sayLev ("ладно, ладно! Сначала включай панель на правом боку станции, потом на левом и только после этого – пульт на днище. Не перепутай!", state);
-		state = sayKesha ("Хорошо, сейчас…", state);
+        state.next = first;
 
-		state.next = first;
+        currentState = first;
+    }
 
-		currentState = first;
-	}
 
 	State wait(int sec, State after)  {
 		after.next = new JustWaitState(this, sec);
@@ -93,8 +201,8 @@ public class TalkingHeadMachine : MonoBehaviour {
 		return afterState.next;
 	}
 
-	State activateSpawner(State afterState) {
-		afterState.next = new ActivateSpawnerState (this);
+	State activateSpawner(string name, State afterState) {
+		afterState.next = new ActivateSpawnerState (name, this);
 		return afterState.next;
 	}
 
@@ -113,286 +221,13 @@ public class TalkingHeadMachine : MonoBehaviour {
 		return afterState.next;
 	}
 
+	State checkStationAngle(float min, float max, State afterState) {
+		afterState.next = new CheckStationAngleState (this, retranslator, min, max);
+		return afterState.next;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		currentState.Run ();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-public interface State {
-	TalkingHeadMachine machine { get; set; }
-	State next { get; set; }
-
-	void Enter();
-	void Run ();
-	void Exit();
-}
-
-
-
-public class HeadTalkState : State {
-	string text;
-	string name;
-	GameObject head;
-
-	public TalkingHeadMachine machine { get; set; }
-	public State next { get; set; }
-	public float waitText = 2; // sec
-	public int waitAfterText = 5; // sec
-
-	private float startTime; 
-	private float charPerSec = 1f / 50;
-
-	public HeadTalkState(TalkingHeadMachine curMachine, GameObject head, string name, string text) {
-		machine = curMachine;
-		this.text = text;
-		this.head = head;
-		this.name = name;
-		waitText = (float) text.Length * charPerSec;
-	}
-
-	public void Enter() {
-		startTime = Time.time;
-		machine.panel.SetActive (true);
-		head.SetActive (true);
-		machine.name.text = name;
-		machine.text.text = "";
-	}
-
-	public void Run() {
-		float curTime = Time.time - startTime;
-		if (curTime < waitText) {
-			RenderText (curTime);
-		} else if (curTime < waitText + waitAfterText) {
-			// do nothing... Just wait
-		} else {
-			machine.NextState (next);
-		}
-	}
-
-	public void Exit() {
-		head.SetActive (false);
-		machine.panel.SetActive (false);
-	}
-
-	private void RenderText(float sec) {
-		int count = Mathf.RoundToInt( sec / charPerSec );
-
-		if (count > text.Length)
-			count = text.Length;
-		machine.text.text = text.Substring (0, count);
-	}
-}
-	
-public class EndState : State {
-	public TalkingHeadMachine machine { get; set; }
-	public State next { get; set; }
-
-	public void Enter() {}
-	public void Run () {}
-	public void Exit() {}
-}
-
-
-public class JustWaitState : State {
-	public TalkingHeadMachine machine { get; set; }
-	public State next { get; set; }
-
-	private int waitSec;
-	private float startTime; 
-
-	public JustWaitState(TalkingHeadMachine curMachine, int sec) {
-		this.machine = curMachine;
-		waitSec = sec;
-	}
-
-
-	public void Enter() {
-		startTime = Time.time;
-	}
-
-	public void Run () {
-		float curTime = Time.time - startTime;
-		if (curTime >= waitSec) {
-			machine.NextState (next);
-		}
-	}
-	public void Exit() {}
-}
-
-
-class PauseState : State {
-	public TalkingHeadMachine machine { get; set; }
-	public State next { get; set; }
-
-	public bool pause;
-
-	public PauseState(TalkingHeadMachine curMachine, bool pause) {
-		this.pause = pause;
-		machine = curMachine;
-	}
-
-	public void Enter() {
-		if (pause) {
-			machine.game.Hold ();
-		} else {
-			machine.game.UnHold ();
-		}
-	}
-	public void Run () {
-		if (next != null) {
-			machine.NextState (next);
-		}
-	}
-	public void Exit() {
-		
-	}
-}
-
-class CameraPositionState : State {
-	public TalkingHeadMachine machine { get; set; }
-	public State next { get; set; }
-
-	private Vector3 pos;
-	private Transform camera;
-
-	public CameraPositionState (TalkingHeadMachine machine, Transform camera, Vector3 pos) {
-		this.machine = machine;
-		this.pos = pos;
-		this.camera = camera;
-	}
-
-	public void Enter() {
-		camera.position = pos;
-	}
-	public void Run () {
-		if (next != null) {
-			machine.NextState (next);
-		}
-	}
-	public void Exit() {} 
-}
-
-class ActivateSpawnerState : State {
-	public TalkingHeadMachine machine { get; set; }
-	public State next { get; set; }
-
-	public ActivateSpawnerState(TalkingHeadMachine machine) {
-		this.machine = machine;
-	}
-
-	public void Enter() {
-		machine.game.spawner.ActivateSpawner ();
-	}
-	public void Run () {
-		if (next != null)
-			machine.NextState (next);
-	}
-	public void Exit() {} 
-}
-
-
-class PlayerInZoneState : State {
-	public TalkingHeadMachine machine { get; set; }
-	public State next { get; set; }
-
-	public PlayerInZoneState (TalkingHeadMachine machine, string zoneName) {
-		this.zoneName = zoneName;
-		this.machine = machine;
-	}
-
-	private Collider2D player;
-	private Collider2D area;
-	private string zoneName;
-
-	public void Enter() {
-		area = GameObject.Find ("/Areas/" + zoneName).GetComponent<Collider2D>();
-		player = GameObject.Find ("/Player").GetComponent<Collider2D>();
-		Debug.Log ("Areas " + area + " , " + player);
-	}
-	public void Run () {
-		if (player.IsTouching (area)) {
-			machine.NextState (next);
-		}
-	}
-	public void Exit() {} 
-}
-
-class AllMobIsDeadState : State {
-	public TalkingHeadMachine machine { get; set; }
-	public State next { get; set; }
-
-	private float startTime;
-	private float checkEverySec = 0.5f;
-
-	public AllMobIsDeadState(TalkingHeadMachine machine) {
-		this.machine = machine;
-	}
-
-	public void Enter() {
-		startTime = Time.time;
-	}
-	public void Run () {
-		if (Time.time - startTime > checkEverySec) {
-			startTime = Time.time;
-			Check ();
-		}
-	}
-	public void Exit() {} 
-
-	private void Check() {
-		MonsterAI[] monsters = Object.FindObjectsOfType<MonsterAI> ();
-		if (monsters.Length == 0) {
-			machine.NextState (next);
-		}
-
-	}
-}
-
-class POITriggerState : State {
-	public TalkingHeadMachine machine { get; set; }
-	public State next { get; set; }
-
-	private string poi_name;
-	private POIProgress poi;
-
-	public POITriggerState(TalkingHeadMachine machine, string poi_name) {
-		this.machine = machine;
-		this.poi_name = poi_name;
-	}
-
-
-	public void Enter() {
-		poi = GameObject.Find ("Retranslator/Canvas/" + poi_name).GetComponent<POIProgress>();
-		poi.readyForCheck = true;
-	}
-	public void Run () {
-		if (poi.completed) {
-			machine.NextState (next);
-		}
-	}
-	public void Exit() {} 
-}
-
-
-/*
-class PauseState : State {
-	public TalkingHeadMachine machine { get; set; }
-	public State next { get; set; }
-
-	public void Enter() {}
-	public void Run () {}
-	public void Exit() {} 
-}
-*/

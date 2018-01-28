@@ -8,7 +8,7 @@ public class RigidPausable : MonoBehaviour {
 
 	void Awake ()
 	{
-		body = GetComponent<Rigidbody2D>();
+		body = gameObject.GetComponent<Rigidbody2D>();
 	}
 
 	public void Hold() {
