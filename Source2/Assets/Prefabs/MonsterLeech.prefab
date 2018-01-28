@@ -33,7 +33,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4768324702755326
 Transform:
   m_ObjectHideFlags: 1
@@ -166,9 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d871b36620f4486bebf7b263c6b1c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterDie: {fileID: 19800000, guid: a2971cff789a244e89a3078a0946d718, type: 2}
   monsterHealth: 100
   monsterSpeed: 0.2
-  damage: 10
+  damage: 2
   agressive: 0
 --- !u!114 &114454348591558498
 MonoBehaviour:

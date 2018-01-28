@@ -180,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d871b36620f4486bebf7b263c6b1c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterDie: {fileID: 19800000, guid: a2971cff789a244e89a3078a0946d718, type: 2}
   monsterHealth: 100
   monsterSpeed: 0.2
   damage: 10
