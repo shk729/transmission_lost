@@ -29,7 +29,7 @@ public class TalkingHeadMachine : MonoBehaviour {
 
         first = new JustWaitState(this, 1);
         state = first;
-        /* state = pause(true, state);
+         state = pause(true, state);
          state = sayLev("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
          state = sayKesha("Да знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя. ", state);
          state = sayLev("Вот сейчас и поймешь, приступай к осмотру.", state);
@@ -144,7 +144,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = activateSpawner("SpawnerMonster4_01", state);
         state = checkPOI("pointOfInterestBlue", state);
         state = activateSpawner("SpawnerMonster4_02", state);
-        state = checkPOI("pointOfInterestGreen", state); */
+        state = checkPOI("pointOfInterestGreen", state);
          state = sendRetranslatorWave (state);
         state = sayKesha("Есть, пошел сигнал!", state);
         state = pause(true, state);
