@@ -10,11 +10,12 @@ public class LosePanel:MonoBehaviour {
 	public void ShowStatus ()
 	{		
 		losePanel.SetActive (true);
-		Time.timeScale = 0;
+		//Time.timeScale = 0;
 	}
 
 	public void OnResumeButton ()
 	{
+		SceneManager.UnloadSceneAsync("gameplay");
 		SceneManager.LoadSceneAsync ("Menu");
 	}
 
