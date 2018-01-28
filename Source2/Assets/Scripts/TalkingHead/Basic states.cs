@@ -367,6 +367,8 @@ class RotateStationState : State {
 	private GameObject retranslator;
 	private float angle = 0;
 	private int angleMax = 360;
+	private float originalAngle;
+	private float step = 0.5f;
 
 	public RotateStationState(TalkingHeadMachine machine) {
 		this.machine = machine;
@@ -375,8 +377,11 @@ class RotateStationState : State {
 	public void Enter() {
 		retranslator = GameObject.Find ("Retranslator");
 		angle = 0;
+		//originalAngle = retranslator.transform.Rotate
 	}
-	public void Run () {}
+	public void Run () {
+		
+	}
 	public void Exit() {} 
 }
 

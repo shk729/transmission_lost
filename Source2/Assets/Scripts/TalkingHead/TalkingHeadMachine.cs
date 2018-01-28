@@ -176,6 +176,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = sayKesha("…И на премию!", state);
         state = sayLev("Еще чего, перетопчешься. Давай, сегодня еще 4 спутника облететь надо.", state);
         state = sayKesha("охххх…", state);
+		state = win (state);
         // the end
 
         state.next = first;
