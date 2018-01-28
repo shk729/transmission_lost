@@ -55,9 +55,9 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = sayLev("Ладно, ладно! Сначала включай красную панель на правом боку станции, потом зеленую на левом и только после этого – синий пульт на днище. Не перепутай!", state);
         state = pause(false, state);
         state = sayKesha("Хорошо, сейчас…", state);
-        state = checkPOI("pointOfInterest3", state);
-        state = checkPOI("pointOfInterest2", state);
-        state = checkPOI("pointOfInterest1", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestBlue", state);
         // а тут - триггер на выстрел
         state = pause(true, state);
         state = activateSpawner("SpawnerMonster", state);
@@ -72,9 +72,9 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = sayLev("Я все слышу!", state);
         state = sayKesha("Будет исполнено, Лев Михалыч!", state);
         state = sayLev("Так-то лучше…", state);
-        state = checkPOI("pointOfInterest2", state);
-        state = checkPOI("pointOfInterest3", state);
-        state = checkPOI("pointOfInterest1", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestBlue", state);
         state = sayKesha("Сигнал пошел!", state);
         state = sayLev("Подтверждаю, есть сигнал! Отлично, осталось еще три ретранслятора.", state);
         state = wait(10, state);
@@ -84,11 +84,11 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = allMobIsDead(state);
         state = sayLev("Наводи на второй ретранслятор", state);
         state = checkStationAngle(260, 280, state);
-        state = sayLev("Запускай, зеленый пульт, красный пульт и синий пульт!", state);
-        state = sayKesha("Запускаю, Зеленый, красный и синий!", state);
-        state = checkPOI("pointOfInterest2", state);
-        state = checkPOI("pointOfInterest3", state);
-        state = checkPOI("pointOfInterest1", state);
+        state = sayLev("Запускай, красный пульт, зеленый пульт и синий пульт!", state);
+        state = sayKesha("Запускаю, красный, зеленый, синий.!", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestBlue", state);
         // а тут - триггер на выстрел
         state = sayLev("Так, запуск есть, а ретранслятор ответа не дает. Ну-ка, слетай к нему да глянь в чем дело.", state);
         // стрелочка на ретранслятор нужна
@@ -107,24 +107,69 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = sayKesha("ДА ВОТ ЖЕ ГАДЫ!", state);
         state = allMobIsDead(state);
         state = sayLev("так, ладно, теперь все должно заработать как надо. Давай, красный, зеленый, синий. ", state);
-        state = checkPOI("pointOfInterest2", state);
-        state = checkPOI("pointOfInterest3", state);
-        state = checkPOI("pointOfInterest1", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestBlue", state);
         state = sayKesha("Помню я, можно по два раза не повторять. Красный, зеленый и… ну этот, как его там, забыл.", state);
+        state = sayLev("Во-во, не повторять ему.", state);
+        // а тут - триггер на выстрел
+        state = sayKesha("Пошла передача!", state);
+        state = sayLev("Есть контакт, молоток! Еще две и все готово. Наводи на третий ретранслятор.", state);
+        state = activateSpawner("SpawnerMonster", state);
+        state = checkStationAngle(170, 190, state);
+        state = sayKesha("Опять пиявки, счас я им!", state);
+        state = allMobIsDead(state);
+        state = sayLev("В этот раз все просто, красный, синий и зеленый, прям как светофор.", state);
+        state = sayKesha("Это что за светофор такой, с синим-то?", state);
+        state = sayLev("Космический! Не умничай тут, настраивай.", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestBlue", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        // а тут - триггер на выстрел
+        state = sayKesha("Есть, пошел сигнал!", state);
+        state = pause(true, state);
+        state = activateSpawner("SpawnerMonster", state);
+        state = camera(-19.6f, 8.6f, state);
+        // тут нужно убить пачку мобов скриптом
+        state = activateSpawner("SpawnerMonster", state);
+        state = pause(false, state);
+        state = sayKesha("ЧТООООАА?!!", state);
+        state = sayLev("упс, похоже надо было сначала включить квантовый редупликатор… Короче, быстро избавься от этих… не знаю кого и запусти станцию еще раз!", state);
+        state = allMobIsDead(state);
+        state = sayKesha("А точно надо?", state);
+        state = sayLev("Надо, Кеша, надо… Как светофор, только наоборот, зеленый, синий, красный.", state);
+        state = sayKesha("Ладно…", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestBlue", state);
+        state = checkPOI("pointOfInterestRed", state);
+        // а тут - триггер на выстрел
+        state = sayLev("Так, идет сигнал, замечательно! Остался финальный рывок. Наводи на четвертый ретранслятор и жми синий, красный, зеленый. Тут уже точно, без ошибок.", state);
+        state = checkStationAngle(80, 100, state);
+        state = sayKesha("Ну хорошо что наконец-то без ошибок. Так, нажимаем…", state);
+        state = checkPOI("pointOfInterestBlue", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        // а тут - триггер на выстрел
+        // тут станция должна прокрутиться на 360 и взорвать все астероиды, заспавнив тучу мобов
+        state = activateSpawner("SpawnerMonster", state);
+        state = sayKesha("ДА ВЫ ИЗДЕВАЕТЕСЬ!!! Ктож это все хоронить-то будет?!", state);
+        state = sayLev("Меньше трепа, больше стрельбы! Не дай им сломать станцию, да и себя тоже!", state);
+        state = sayKesha("НУ ВСЕ, РЕДИСКИ КОСМИЧЕСКИЕ, СЕЙЧАС ВЫ ПОЗНАЕТЕ ВСЮ МЕРУ МОЕГО ГНЕВА!", state);
+        state = wait(30, state);
+        state = sayLev("Они так и будут лезть! Запускай передачу еще раз, аварийная частота – красный, зеленый, красный! Иначе конец!", state);
+        state = sayKesha("Сейчас, мне бы только успеть…", state);
+        state = checkPOI("pointOfInterestRed", state);
+        state = checkPOI("pointOfInterestGreen", state);
+        state = checkPOI("pointOfInterestRed", state);
+        // а тут - триггер на выстрел
+        // тут нужно убить всех мобов
+        state = sayKesha("Ох, ну и толпы же их были однако...", state);
+        state = sayLev("Ладно, все хорошо, что хорошо заканчивается. Возвращайся на челнок, на отгул ты себе сегодня точно заработал.", state);
+        state = sayKesha("…И на премию!", state);
+        state = sayLev("Еще чего, перетопчешься. Давай, сегодня еще 4 спутника облететь надо.", state);
+        state = sayKesha("охххх…", state);
+        // the end
 
-
-        //	state = camera (-19.6f, 8.6f, state);
-        //	state = activateSpawner (state);
-        //	state = pause (false, state);
-        //	state = camera (0f, 0f, state);
-        //state = activateSpawner (state);
-        //state = pause (false, state);
-        //	state = wait (2, state);
-        //	state = wait (2, state);
-        //	state = sayLev ("теперь внимательно! Сначала включай нейтронный актуатор, затем квантовый редупликатор и только в конце – квантовый эмиттер.", state);
-        //	
-        //	state = sayLev ("ладно, ладно! Сначала включай панель на правом боку станции, потом на левом и только после этого – пульт на днище. Не перепутай!", state);
-        //	
         state.next = first;
 
         currentState = first;
