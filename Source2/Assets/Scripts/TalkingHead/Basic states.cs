@@ -56,12 +56,19 @@ public class HeadTalkState : State {
 	}
 
 	public void Run() {
+		SkipOnKey ();
 		float curTime = Time.time - startTime;
 		if (curTime < waitText) {
 			RenderText (curTime);
 		} else if (curTime < waitText + waitAfterText) {
 			// do nothing... Just wait
 		} else {
+			machine.NextState (next);
+		}
+	}
+
+	private void SkipOnKey() {
+		if (Input.GetKeyUp (KeyCode.E) || Input.GetMouseButton (1)) {
 			machine.NextState (next);
 		}
 	}
