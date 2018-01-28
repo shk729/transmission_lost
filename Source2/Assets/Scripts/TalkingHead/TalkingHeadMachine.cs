@@ -29,6 +29,7 @@ public class TalkingHeadMachine : MonoBehaviour {
 
         first = new JustWaitState(this, 1);
         state = first;
+		//state = destroyAsteroids (state);
          state = pause(true, state);
          state = sayLev("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
          state = sayKesha("Да знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя. ", state);
@@ -284,7 +285,10 @@ public class TalkingHeadMachine : MonoBehaviour {
 		return afterState.next;
 	}
 
-
+	State destroyAsteroids(State afterState) {
+		afterState.next = new KillAsteroidState (this);
+		return afterState.next;
+	}
 
 	// Update is called once per frame
 	void Update () {

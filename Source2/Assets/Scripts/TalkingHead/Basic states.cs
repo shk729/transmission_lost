@@ -8,13 +8,6 @@ public class Basicstates : MonoBehaviour {
 
 
 
-
-
-
-
-
-
-
 public interface State {
 	TalkingHeadMachine machine { get; set; }
 	State next { get; set; }
@@ -354,8 +347,6 @@ class KillAllState : State {
 		foreach (MonsterAI monster in allMonsters) {
 			monster.Die ();
 		}
-        if (next != null)
-            machine.NextState(next);
 	}
 	public void Exit() {} 
 }
@@ -454,6 +445,28 @@ class DirectArrowState : State {
 			arrow.SetObjjectToDirection (target);
 		} else {
 			arrow.gameObject.SetActive (false);
+		}
+
+		machine.NextState (next);
+	}
+	public void Exit() {} 
+}
+
+
+class KillAsteroidState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public KillAsteroidState(TalkingHeadMachine machine) {
+		this.machine = machine;
+	}
+
+	public void Enter() {}
+	public void Run () {
+		//RocksControl
+		RocksControl[] rocks = Object.FindObjectsOfType<RocksControl>();
+		foreach (RocksControl rock in rocks) {
+			rock.Destroy ();
 		}
 
 		machine.NextState (next);
