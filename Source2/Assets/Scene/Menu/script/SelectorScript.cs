@@ -8,7 +8,13 @@ public class SelectorScript : MonoBehaviour {
 
 	private GameObject selector;
 	private List<GameObject> items;
+	private Renderer currentObject;
 	int current = 0;
+
+	private int flashMax = 180;
+	private float flashStep = 3f;
+	private float flashAlpha = 0.2f;
+	private float flashCurrent = 0;
 
 	void Start() {
 		selector = gameObject;
@@ -21,7 +27,7 @@ public class SelectorScript : MonoBehaviour {
 
 	void Update() {
 		ChangeCursor ();
-
+		FlashCurrent ();
 	}
 
 	void ChangeCursor() {
@@ -50,6 +56,12 @@ public class SelectorScript : MonoBehaviour {
 		current = posItem;
 		GameObject item = items [posItem];
 
+		if (currentObject != null) {
+			Color c = currentObject.material.color;
+			currentObject.material.color = new Color (c.r, c.g, c.b, 1f);
+		}
+		currentObject = item.GetComponent<Renderer> ();
+
 		SpriteRenderer itemSprite = item.GetComponent<SpriteRenderer> ();
 		Vector3 pos = item.transform.position;
 		pos.x = pos.x - (itemSprite.bounds.size.x / 2) - 0.6f;
@@ -58,5 +70,15 @@ public class SelectorScript : MonoBehaviour {
 
 	public void RunCursor(int posItem) {
 		items [posItem].GetComponent<NextSceneScript> ().Run ();
+	}
+
+	private void FlashCurrent() {
+		flashCurrent += flashStep;
+		if (flashCurrent > flashMax)
+			flashCurrent = 0;
+		Color c = currentObject.material.color;
+		float alpha = flashAlpha + Mathf.Sin (flashCurrent * Mathf.Deg2Rad);
+		Debug.Log ("Alpha" + alpha + " sin=" + Mathf.Sin (flashCurrent) + " of " + flashCurrent);
+		currentObject.material.color = new Color(c.r, c.g, c.b, alpha);
 	}
 }
