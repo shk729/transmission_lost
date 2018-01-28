@@ -324,6 +324,34 @@ class ShootStationState : State {
 	public void Exit() {} 
 }
 
+
+class KillAllState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public KillAllState(TalkingHeadMachine machine) {
+		this.machine = machine;
+	}
+
+	public void Enter() {}
+	public void Run () {}
+	public void Exit() {} 
+}
+
+
+class WinState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public WinState(TalkingHeadMachine machine) {
+		this.machine = machine;
+	}
+
+	public void Enter() {}
+	public void Run () {}
+	public void Exit() {} 
+}
+
 /*
 class PauseState : State {
 	public TalkingHeadMachine machine { get; set; }

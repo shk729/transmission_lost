@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MonsterAI : RigidPausable {
 
+	[SerializeField]
+	private ParticleSystem monsterDie;
 
 	public float monsterHealth = 100;
 	public float monsterSpeed = 0.2f;
@@ -67,5 +69,15 @@ public class MonsterAI : RigidPausable {
 			transform.rotation = Quaternion.Slerp (transform.rotation, newRotation, Time.fixedDeltaTime * rotationSpeed);
 			enemy.freezeRotation = false;
 		}
+	}
+
+	public void Die() {
+		gameObject.SetActive (false);
+
+		//EFFECT
+		ParticleSystem monsterDie_clone =  Instantiate(monsterDie, transform.position, transform.rotation); 
+		monsterDie_clone.gameObject.SetActive (true);
+
+		Destroy (monsterDie_clone, monsterDie.duration);
 	}
 }
