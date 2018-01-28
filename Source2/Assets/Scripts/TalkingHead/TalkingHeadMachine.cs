@@ -168,7 +168,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterestGreen", state);
         state = checkPOI("pointOfInterestRed", state);
 		state = sendRetranslatorWave (state);
-        // тут нужно убить всех мобов
+		state = killAll (state);// тут нужно убить всех мобов
         state = sayKesha("Ох, ну и толпы же их были однако...", state);
         state = sayLev("Ладно, все хорошо, что хорошо заканчивается. Возвращайся на челнок, на отгул ты себе сегодня точно заработал.", state);
         state = sayKesha("…И на премию!", state);

@@ -343,6 +343,18 @@ class KillAllState : State {
 	public void Exit() {} 
 }
 
+class RotateStationState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public RotateStationState(TalkingHeadMachine machine) {
+		this.machine = machine;
+	}
+
+	public void Enter() {}
+	public void Run () {}
+	public void Exit() {} 
+}
 
 class WinState : State {
 	public TalkingHeadMachine machine { get; set; }
@@ -352,7 +364,16 @@ class WinState : State {
 		this.machine = machine;
 	}
 
-	public void Enter() {}
+	private GameObject retranslator;
+	private float angle = 0;
+	private int angleMax = 360;
+
+
+	public void Enter() {
+		retranslator = GameObject.Find ("Retranslator");
+		angle = 0;
+	}
+
 	public void Run () {}
 	public void Exit() {} 
 }
