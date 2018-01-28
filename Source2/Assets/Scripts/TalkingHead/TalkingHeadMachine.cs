@@ -31,7 +31,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = first;
         state = pause(true, state);
         state = sayLev("Oкей, телеметрия вроде как в норме, давай приступать. Как ты знаешь, это единственная всеволновая передающая станция в этом секторе, так что починить ее надо как можно быстрее.", state);
-        state = sayKesha("да знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя. ", state);
+		state = sayKesha("да знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя. ", state);
         state = sayLev("Вот сейчас и поймешь, приступай к осмотру.", state);
         state = pause(false, state);
         state = activateSpawner("SpawnerMonster1", state);
@@ -59,7 +59,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterestRed", state);
         state = checkPOI("pointOfInterestGreen", state);
         state = checkPOI("pointOfInterestBlue", state);
-        // а тут - триггер на выстрел
+		state = sendRetranslatorWave (state);// а тут - триггер на выстрел
         state = pause(true, state);
         state = activateSpawner("SpawnerMonster1", state);
         state = camera(-19.6f, 8.6f, state);
@@ -131,7 +131,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = pause(true, state);
         state = activateSpawner("SpawnerMonster1", state);
         state = camera(-19.6f, 8.6f, state);
-        // тут нужно убить пачку мобов скриптом
+		state = killAll (state);// тут нужно убить пачку мобов скриптом
         state = activateSpawner("SpawnerMonster1", state);
         state = pause(false, state);
         state = sayKesha("ЧТООООАА?!!", state);
@@ -229,6 +229,11 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	State sendRetranslatorWave(State afterState) {
 		afterState.next = new ShootStationState (this);
+		return afterState.next;
+	}
+
+	State killAll(State afterState) {
+		afterState.next = new KillAllState (this);
 		return afterState.next;
 	}
 

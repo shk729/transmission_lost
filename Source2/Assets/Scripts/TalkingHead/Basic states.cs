@@ -334,7 +334,12 @@ class KillAllState : State {
 	}
 
 	public void Enter() {}
-	public void Run () {}
+	public void Run () {
+		MonsterAI[] allMonsters = Object.FindObjectsOfType<MonsterAI> ();
+		foreach (MonsterAI monster in allMonsters) {
+			monster.Die ();
+		}
+	}
 	public void Exit() {} 
 }
 
