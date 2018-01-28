@@ -1106,7 +1106,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 224857014432808040}
   m_HandleRect: {fileID: 0}
@@ -1150,6 +1150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stantionHPbar: {fileID: 114977579277451042}
   curValue_slider: 100000
+  maxValue_slider: 100000
 --- !u!114 &114190671922635844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1319,7 +1320,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 224086246823716152}
   m_HandleRect: {fileID: 0}
@@ -1531,7 +1532,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 224269676754001476}
   m_HandleRect: {fileID: 0}
@@ -1579,7 +1580,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 224909601425166722}
   m_HandleRect: {fileID: 0}

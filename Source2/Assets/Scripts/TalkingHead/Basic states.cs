@@ -273,9 +273,9 @@ class POITriggerState : State {
 
 
 	public void Enter() {
-		poi.ResetPOI ();
 		poi = GameObject.Find ("Retranslator/Canvas/" + poi_name).GetComponent<POIProgress>();
-		poi.readyForCheck = true;
+        poi.ResetPOI();
+        poi.readyForCheck = true;
 	}
 	public void Run () {
 		if (poi.completed) {
