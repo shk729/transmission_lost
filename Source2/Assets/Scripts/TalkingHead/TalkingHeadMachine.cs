@@ -90,7 +90,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterestRed", state);
         state = checkPOI("pointOfInterestGreen", state);
         state = checkPOI("pointOfInterestBlue", state);
-        // а тут - триггер на выстрел
+		state = sendRetranslatorWave (state);
         state = sayLev("Так, запуск есть, а ретранслятор ответа не дает. Ну-ка, слетай к нему да глянь в чем дело.", state);
         // стрелочка на ретранслятор нужна
         state = sayKesha("Так далеко же, заблужусь!", state);
@@ -113,7 +113,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterestBlue", state);
         state = sayKesha("Помню я, можно по два раза не повторять. Красный, зеленый и… ну этот, как его там, забыл.", state);
         state = sayLev("Во-во, не повторять ему.", state);
-        // а тут - триггер на выстрел
+		state = sendRetranslatorWave (state);
         state = sayKesha("Пошла передача!", state);
         state = sayLev("Есть контакт, молоток! Еще две и все готово. Наводи на третий ретранслятор.", state);
         state = activateSpawner("SpawnerMonster1", state);
@@ -126,7 +126,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterestRed", state);
         state = checkPOI("pointOfInterestBlue", state);
         state = checkPOI("pointOfInterestGreen", state);
-        // а тут - триггер на выстрел
+		state = sendRetranslatorWave (state);
         state = sayKesha("Есть, пошел сигнал!", state);
         state = pause(true, state);
         state = activateSpawner("SpawnerMonster1", state);
@@ -143,14 +143,14 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterestGreen", state);
         state = checkPOI("pointOfInterestBlue", state);
         state = checkPOI("pointOfInterestRed", state);
-        // а тут - триггер на выстрел
+		state = sendRetranslatorWave (state);
         state = sayLev("Так, идет сигнал, замечательно! Остался финальный рывок. Наводи на четвертый ретранслятор и жми синий, красный, зеленый. Тут уже точно, без ошибок.", state);
         state = checkStationAngle(80, 100, state);
         state = sayKesha("Ну хорошо что наконец-то без ошибок. Так, нажимаем…", state);
         state = checkPOI("pointOfInterestBlue", state);
         state = checkPOI("pointOfInterestRed", state);
         state = checkPOI("pointOfInterestGreen", state);
-        // а тут - триггер на выстрел
+		state = sendRetranslatorWave (state);
         // тут станция должна прокрутиться на 360 и взорвать все астероиды, заспавнив тучу мобов
         state = activateSpawner("SpawnerMonster1", state);
         state = sayKesha("ДА ВЫ ИЗДЕВАЕТЕСЬ!!! Ктож это все хоронить-то будет?!", state);
@@ -162,7 +162,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         state = checkPOI("pointOfInterestRed", state);
         state = checkPOI("pointOfInterestGreen", state);
         state = checkPOI("pointOfInterestRed", state);
-        // а тут - триггер на выстрел
+		state = sendRetranslatorWave (state);
         // тут нужно убить всех мобов
         state = sayKesha("Ох, ну и толпы же их были однако...", state);
         state = sayLev("Ладно, все хорошо, что хорошо заканчивается. Возвращайся на челнок, на отгул ты себе сегодня точно заработал.", state);
