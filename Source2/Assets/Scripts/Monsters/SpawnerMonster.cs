@@ -9,7 +9,7 @@ public class SpawnerMonster : MonoBehaviour {
 	private List<GameObject> monstersList = new List<GameObject>();
 
 	public float monsterSpawnDelay =2f;
-	private bool spawningProcess = false;
+	private bool spawningProcess = true;
 
 
 	public void ActivateSpawner() {
