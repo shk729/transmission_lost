@@ -181,9 +181,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterDie: {fileID: 19800000, guid: a2971cff789a244e89a3078a0946d718, type: 2}
-  monsterHealth: 100
-  monsterSpeed: 0.2
-  damage: 10
+  monsterHealth: 200
+  monsterSpeed: 0.3
+  damage: 5
   agressive: 0
 --- !u!114 &114373530957299920
 MonoBehaviour:
