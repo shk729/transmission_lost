@@ -315,7 +315,7 @@ class ShootStationState : State {
 	}
 
 	public void Enter() {
-		stationSignal = GameObject.Find ("Retranslator").GetComponent (SignalSend);
+		stationSignal = GameObject.Find ("Retranslator").GetComponent<SignalSend>();
 	}
 	public void Run () {
 		stationSignal.SendWave ();
