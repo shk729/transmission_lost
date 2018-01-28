@@ -73,8 +73,8 @@ public class POIProgress : MonoBehaviour {
 			if (readyForCheck) {
 				completed = true;
 			}
-			curValue_slider = 0;
-			//another shit
+
+			curValue_slider = maxValue_slider;
 		}  
 
 		Debug.Log (curValue_slider);
