@@ -354,6 +354,8 @@ class KillAllState : State {
 		foreach (MonsterAI monster in allMonsters) {
 			monster.Die ();
 		}
+        if (next != null)
+            machine.NextState(next);
 	}
 	public void Exit() {} 
 }
