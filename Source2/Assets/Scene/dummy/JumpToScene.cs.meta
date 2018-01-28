@@ -1,12 +1,11 @@
 fileFormatVersion: 2
-guid: 97d871b36620f4486bebf7b263c6b1c1
-timeCreated: 1517130744
+guid: af6e91c4224d4864c8763630a9cd2404
+timeCreated: 1517128471
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - monsterDie: {fileID: 19800000, guid: a2971cff789a244e89a3078a0946d718, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

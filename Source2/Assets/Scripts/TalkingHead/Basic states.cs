@@ -56,12 +56,19 @@ public class HeadTalkState : State {
 	}
 
 	public void Run() {
+		SkipOnKey ();
 		float curTime = Time.time - startTime;
 		if (curTime < waitText) {
 			RenderText (curTime);
 		} else if (curTime < waitText + waitAfterText) {
 			// do nothing... Just wait
 		} else {
+			machine.NextState (next);
+		}
+	}
+
+	private void SkipOnKey() {
+		if (Input.GetKeyUp (KeyCode.E) || Input.GetMouseButton (1)) {
 			machine.NextState (next);
 		}
 	}
@@ -183,7 +190,7 @@ class ActivateSpawnerState : State {
 	}
 
 	public void Enter() {
-		spawner = GameObject.Find ("/SceneObjects/" + name).GetComponent<SpawnerMonster> ();
+		spawner = GameObject.Find ("/SceneObjects/Spawners/" + name).GetComponent<SpawnerMonster> ();
 		spawner.ActivateSpawner ();
 	}
 
@@ -297,8 +304,14 @@ class CheckStationAngleState : State {
 	public void Run () {
 		float stRotation = station.transform.rotation.eulerAngles.z;
 		Debug.Log ("Station rotation " + stRotation);
-		if (stRotation < max && stRotation > min) {
-			machine.NextState (next);
+		if (min < max) {
+			if (stRotation < max && stRotation > min) {
+				machine.NextState (next);
+			}
+		} else {
+			if (stRotation > max && stRotation < min) {
+				machine.NextState (next);
+			}
 		}
 	}
 	public void Exit() {} 
@@ -308,11 +321,72 @@ class ShootStationState : State {
 	public TalkingHeadMachine machine { get; set; }
 	public State next { get; set; }
 
+	private SignalSend stationSignal;
+
 	public ShootStationState(TalkingHeadMachine machine) {
 		this.machine = machine;
 	}
 
+	public void Enter() {
+		stationSignal = GameObject.Find ("Retranslator").GetComponent<SignalSend>();
+	}
+	public void Run () {
+		stationSignal.SendWave ();
+		machine.NextState (next);
+	}
+	public void Exit() {} 
+}
+
+
+class KillAllState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public KillAllState(TalkingHeadMachine machine) {
+		this.machine = machine;
+	}
+
 	public void Enter() {}
+	public void Run () {
+		MonsterAI[] allMonsters = Object.FindObjectsOfType<MonsterAI> ();
+		foreach (MonsterAI monster in allMonsters) {
+			monster.Die ();
+		}
+	}
+	public void Exit() {} 
+}
+
+class RotateStationState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public RotateStationState(TalkingHeadMachine machine) {
+		this.machine = machine;
+	}
+
+	public void Enter() {}
+	public void Run () {}
+	public void Exit() {} 
+}
+
+class WinState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	public WinState(TalkingHeadMachine machine) {
+		this.machine = machine;
+	}
+
+	private GameObject retranslator;
+	private float angle = 0;
+	private int angleMax = 360;
+
+
+	public void Enter() {
+		retranslator = GameObject.Find ("Retranslator");
+		angle = 0;
+	}
+
 	public void Run () {}
 	public void Exit() {} 
 }
