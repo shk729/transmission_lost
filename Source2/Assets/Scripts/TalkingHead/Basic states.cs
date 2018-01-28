@@ -281,7 +281,10 @@ class POITriggerState : State {
 			machine.NextState (next);
 		}
 	}
-	public void Exit() {} 
+	public void Exit() {
+		poi.completed = false;
+		poi.readyForCheck = false;
+	} 
 }
 
 
@@ -360,11 +363,19 @@ class RotateStationState : State {
 	public TalkingHeadMachine machine { get; set; }
 	public State next { get; set; }
 
+
+	private GameObject retranslator;
+	private float angle = 0;
+	private int angleMax = 360;
+
 	public RotateStationState(TalkingHeadMachine machine) {
 		this.machine = machine;
 	}
 
-	public void Enter() {}
+	public void Enter() {
+		retranslator = GameObject.Find ("Retranslator");
+		angle = 0;
+	}
 	public void Run () {}
 	public void Exit() {} 
 }
@@ -377,17 +388,18 @@ class WinState : State {
 		this.machine = machine;
 	}
 
-	private GameObject retranslator;
-	private float angle = 0;
-	private int angleMax = 360;
 
 
 	public void Enter() {
-		retranslator = GameObject.Find ("Retranslator");
-		angle = 0;
+		
 	}
 
-	public void Run () {}
+	public void Run () {
+		WinPanel win = GameObject.Find ("PanelsController").GetComponent<WinPanel> ();
+		win.ShowStatus ();
+		if (next != null)
+			machine.NextState (next);
+	}
 	public void Exit() {} 
 }
 

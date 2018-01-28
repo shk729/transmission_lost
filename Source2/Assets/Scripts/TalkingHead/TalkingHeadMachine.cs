@@ -242,6 +242,11 @@ public class TalkingHeadMachine : MonoBehaviour {
 		return afterState.next;
 	}
 
+	State win(State afterState) {
+		afterState.next = new WinState (this);
+		return afterState.next;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		currentState.Run ();
