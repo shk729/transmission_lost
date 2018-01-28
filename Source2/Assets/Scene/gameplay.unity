@@ -974,7 +974,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monstersArray:
   - {fileID: 1149844620}
-  - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1 &435214717
 GameObject:
@@ -1017,7 +1016,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersArray:
-  - {fileID: 1149844620}
   - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!4 &448939726 stripped
@@ -1066,7 +1064,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monstersArray:
   - {fileID: 1149844620}
-  - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1 &492755295
 GameObject:
@@ -1109,7 +1106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersArray:
-  - {fileID: 1149844620}
   - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1 &543382781
@@ -1226,7 +1222,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersArray:
-  - {fileID: 1149844620}
   - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1 &590409475
@@ -1378,7 +1373,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersArray:
-  - {fileID: 1149844620}
   - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1 &620477739
@@ -1905,7 +1899,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersArray:
-  - {fileID: 1149844620}
   - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1 &833101579
@@ -2467,7 +2460,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersArray:
-  - {fileID: 1149844620}
   - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1001 &973242635
@@ -3188,7 +3180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monstersArray:
   - {fileID: 1149844620}
-  - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!4 &1239190321 stripped
 Transform:
@@ -3404,7 +3395,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monstersArray:
   - {fileID: 1149844620}
-  - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1 &1273980165
 GameObject:
@@ -3448,7 +3438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monstersArray:
   - {fileID: 1149844620}
-  - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1 &1308038538
 GameObject:
@@ -3491,7 +3480,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersArray:
-  - {fileID: 1149844620}
   - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1 &1344305181
@@ -3584,7 +3572,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersArray:
-  - {fileID: 1149844620}
   - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!4 &1398430121 stripped
@@ -3748,7 +3735,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monstersArray:
-  - {fileID: 1149844620}
   - {fileID: 1149844620}
   monsterSpawnDelay: 0.1
 --- !u!1001 &1460025872
@@ -5677,8 +5663,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114683695856201880, guid: 777d5193e6bf65f4e81a41a5094e1a5f, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 777d5193e6bf65f4e81a41a5094e1a5f, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1855020048 stripped

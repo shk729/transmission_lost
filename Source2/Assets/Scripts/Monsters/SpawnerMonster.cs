@@ -50,9 +50,9 @@ public class SpawnerMonster : MonoBehaviour {
 		if (i< monstersList.Count) {
 			monstersList[i].gameObject.transform.position = transform.position;
 			monstersList[i].SetActive(true);
-			yield return new WaitForSeconds(delay);
-			i++;
-			//StartCoroutine (NextMonsterDelay (i, monsterSpawnDelay));
+            i++;
+            yield return new WaitForSeconds(delay);
+			StartCoroutine (NextMonsterDelay (i, monsterSpawnDelay));
 		}
 	}
 

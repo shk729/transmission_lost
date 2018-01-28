@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 60147488083949352}
   - component: {fileID: 61958182142438316}
   - component: {fileID: 114107989581352956}
-  - component: {fileID: 114683695856201880}
   m_Layer: 8
   m_Name: MonsterRock
   m_TagString: Monster
@@ -259,22 +258,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterDie: {fileID: 19800000, guid: a2971cff789a244e89a3078a0946d718, type: 2}
-  monsterHealth: 1000
+  monsterHealth: 500
   monsterSpeed: 0.05
   damage: 25
   agressive: 0
---- !u!114 &114683695856201880
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1789284464426560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9be6f90660a764c78aad78befdf8140d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterDamage: 1
 --- !u!212 &212386247865683590
 SpriteRenderer:
   m_ObjectHideFlags: 1
