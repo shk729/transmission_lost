@@ -474,6 +474,29 @@ class KillAsteroidState : State {
 	public void Exit() {} 
 }
 
+class KillOneAsteroidState : State {
+	public TalkingHeadMachine machine { get; set; }
+	public State next { get; set; }
+
+	private string name;
+	private RocksControl rock;
+	public KillOneAsteroidState(TalkingHeadMachine machine, string name) {
+		this.machine = machine;
+		this.name = name;
+	}
+
+	public void Enter() {
+		rock = GameObject.Find (name).GetComponent<RocksControl> ();
+	}
+
+	public void Run () {
+		rock.Destroy ();
+
+		machine.NextState (next);
+	}
+	public void Exit() {} 
+}
+
 /*
 class PauseState : State {
 	public TalkingHeadMachine machine { get; set; }

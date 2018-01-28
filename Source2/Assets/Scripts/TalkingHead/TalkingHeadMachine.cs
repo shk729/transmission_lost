@@ -203,6 +203,7 @@ public class TalkingHeadMachine : MonoBehaviour {
         // the end
 
 		// state = setArrow (true, "Satellite2", state);
+		// state = destroyOneAsteroid("Rock (3)", state);  Убить Адин Кратер с имененм Rock (3)
 
         state.next = first;
 
@@ -287,6 +288,11 @@ public class TalkingHeadMachine : MonoBehaviour {
 
 	State destroyAsteroids(State afterState) {
 		afterState.next = new KillAsteroidState (this);
+		return afterState.next;
+	}
+
+	State destroyOneAsteroid(string name, State afterState) {
+		afterState.next = new KillOneAsteroidState (this, name);
 		return afterState.next;
 	}
 
