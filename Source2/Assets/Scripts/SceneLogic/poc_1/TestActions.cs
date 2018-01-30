@@ -145,7 +145,7 @@ public class TestSpawnMonster : TestMachineStep {
 	}
 
 	private float startTime;
-	private float spawnDelay = 0.5f;
+	private float spawnDelay = 0.1f;
 	private int spawnCounter;
 
 	public override void Enter () {
@@ -295,7 +295,7 @@ public class TestWaitStationAngleStep : TestMachineStep {
 
 	private float min;
 	private float max;
-	private float anglePlusMinus = 7f;
+	private float anglePlusMinus = 2f;
 
 	public override void Enter () {
 		GetAngles ();
@@ -303,13 +303,13 @@ public class TestWaitStationAngleStep : TestMachineStep {
 
 	public override void Run () {
 		float stRotation = station.rotation.eulerAngles.z;
-		Debug.Log ("Station rotation " + stRotation);
+		Debug.Log ("Station rotation " + stRotation + " min:" + min + " max:" + max);
 		if (min < max) {
 			if (stRotation < max && stRotation > min) {
 				Done ();
 			}
 		} else {
-			if (stRotation > max && stRotation < min) {
+			if (stRotation < max || stRotation > min) {
 				Done ();
 			}
 		}
@@ -321,15 +321,17 @@ public class TestWaitStationAngleStep : TestMachineStep {
 
 		float moveAngle = 0;
 		float rotAngle = Mathf.Atan(moveDirection.normalized.y/moveDirection.normalized.x); 
-
-		if (moveDirection.normalized.x>=0)
-			moveAngle = rotAngle * Mathf.Rad2Deg-90;
-		else if (moveDirection.normalized.x<0)
-			moveAngle = rotAngle * Mathf.Rad2Deg+90;
-
-		min = moveAngle - anglePlusMinus;
-		max = moveAngle + anglePlusMinus;
+		min = CorrectAngle( rotAngle - anglePlusMinus );
+		max = CorrectAngle( rotAngle + anglePlusMinus );
 		//arrow.rotation = Quaternion.Euler (0, 0, moveAngle+180);
+	}
+
+	private float CorrectAngle(float angle) {
+		while (angle < 0) 
+			angle += 360;
+		while (angle > 360)
+			angle -= 360;
+		return angle;
 	}
 }
 

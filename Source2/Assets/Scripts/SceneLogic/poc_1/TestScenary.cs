@@ -14,6 +14,7 @@ public class TestScenary : TestScenaryHelper {
 		wait (3);
 		spawnMonster ("Spawners/SpawnerMonster1", "MonsterLeech", 4);
 		unpause ();
+		moveCamera (-0.51f, -4.51f);
 		waitPOIActivation ("pointOfInterestRed");*/
 
 		pause ();
@@ -22,62 +23,72 @@ public class TestScenary : TestScenaryHelper {
 		say("KeshaNorm", "Да знаю я, знаю. Я же ее и устанавливал в прошлом году. Не пойму только, с чего бы она вышла из строя. ");
         say("LevNorm", "Вот сейчас и поймешь, приступай к осмотру.");
 		unpause ();
-		spawnMonster ("Spawners/SpawnerMonster1", "MonsterLeech", 4);
+		spawnMonster ("Spawners/SpawnerMonster1", "MonsterLeech", 10);
 		waitPlayerInArea ("Zone_1");
 		pause ();
 		moveCamera (-0.51f, -4.51f);
 		say ("KeshaPanic", "A это еще что за хрень?!");
 		say ("LevNorm", "А, теперь все понятно. Это, Иннокентий, Hirudinea Kosmos, то бишь космические пиявки. Жрут электрооборудование, но не против и ремонтником закусить, так что мочи их смело! ");
 		unpause ();
+		say ("KeshaPanic", "Вот вам, твари инопланетные!");
+		say ("LevNorm", "Ты же в курсе что они тебя не слышат? Мало того что в вакууме звук не передается, так у этих милах и ушей-то нет!");
+		say ("KeshaNorm", "Вот кто бы мог подумать!");
+		waitAllMonstersAreDead ();
+		say ("LevNorm", "Окей. Теперь, когда мы знаем причину поломки, то справиться с ремонтом будет нетрудно. Надо всего лишь вручную сориентировать станцию, откалибровать передачу ");
+		say ("LevNorm", "по четырем ретрансляторам и включить программу автонастройки. Плевое дело!");
+		say ("KeshaNorm", "Ну да, не тебе же руками многотонную станцию крутить. ");
+		showArrow ("Satellite1");
+		say ("LevNorm", "Вращай станцию! Указатель подскажет куда должен смотреть излучатель станции!");
+		say ("LevPanic", "Ой, ну вот не надо тут! Крутить все равно двигатель ранца будет, а не ты. В общем приступай. Сначала сориентируй станцию на первый ретранслятор. Как только займешь нужное положение – запусти системы станции.");
+		say ("KeshaNorm", "Есть!");
+		waitStationAngle ("Satellite1");
+		hideArrow ();
+		pause ();
+		say ("LevNorm", "Млдц! Станция под нужным углом");
+
+		say ("LevNorm", "Теперь внимательно! Сначала включай нейтронный актуатор, затем квантовый редупликатор и только в конце – тахионный эмиттер.");
+		say ("KeshaPanic", "Это сейчас на каком языке было?!");
+		say ("LevNorm", "Ладно, ладно! Сначала включай красную панель на правом боку станции, потом зеленую на левом и только после этого – синий пульт на днище. Не перепутай!");
+		unpause ();
+		say ("KeshaNorm", "Хорошо, сейчас…");
+		waitPOIActivation ("pointOfInterestRed");
+		spawnMonster ("Spawners/SpawnerMonster1_03", "MonsterLeech", 5);
+		spawnMonster ("Spawners/SpawnerMonster1_01", "MonsterLeech", 5);
+		waitPOIActivation ("pointOfInterestGreen");
+		spawnMonster ("Spawners/SpawnerMonster1_02", "MonsterLeech", 5);
+		waitPOIActivation ("pointOfInterestBlue");
+		waitStationAngle ("Satellite1");
+		moveCamera (3.92f, 2.73f);
+		stationSignal ();
+		wait (2);
+		// Здесь уничтожение астероида "Rock (3)"
+		pause();
+		spawnMonster ("Spawners/SpawnerMonster2", "MonsterRock", 2);
+		moveCamera (17.91f, 17.24f);
+		say ("KeshaSuperPanic", "Это что еще за нафиг?!");
+		say ("LevPanic", "Ого, это ж как наша станция на местные астероиды влияет! Разберись с ними, и запускай еще раз.");
+		unpause ();
+		waitAllMonstersAreDead ();
+		say ("KeshaNorm", "Ффух, здоровенные, гады. Ладно, приступаю к запуску.");
+		say ("LevNorm", "Давай, сначала ре… тьфу, короче зеленый пульт, красный пульт и синий пульт!");
+		say ("KeshaNorm", "Принято, зеленый, красный, синий. Так бы сразу, а то выражается, понимаешь… ");
+		say ("LevPanic", "Я все слышу!");
+		say ("KeshaPanic", "Будет исполнено, Лев Михалыч!");
+		say ("LevNorm", "Так-то лучше…");
+		waitPOIActivation ("pointOfInterestGreen");
+		waitPOIActivation ("pointOfInterestRed");
+		waitPOIActivation ("pointOfInterestBlue");
+		stationSignal ();
+		say ("KeshaNorm", "Сигнал пошел!");
+		say ("LevNorm", "Подтверждаю, есть сигнал! Отлично, осталось еще три ретранслятора.");
+		//win ();
+
         
+
+
          /*
-         state = sayKesha("Вот вам, твари инопланетные!", state);
-         state = sayLev("Ты же в курсе что они тебя не слышат? Мало того что в вакууме звук не передается, так у этих милах и ушей-то нет!", state);
-         state = sayKesha("Вот кто бы мог подумать!", state);
-         state = allMobIsDead(state);
-         state = sayLev("Окей. Теперь, когда мы знаем причину поломки, то справиться с ремонтом будет нетрудно. Надо всего лишь вручную сориентировать станцию, откалибровать передачу ", state);
-         state = sayLev("по четырем ретрансляторам и включить программу автонастройки. Плевое дело!", state);
-         state = sayKesha("Ну да, не тебе же руками многотонную станцию крутить. ", state);
-         state = setArrow(true, "Satellite1", state);
-         state = sayLev("Ой, ну вот не надо тут! Крутить все равно двигатель ранца будет, а не ты. В общем приступай. Сначала сориентируй станцию на первый ретранслятор. Как только займешь нужное положение – запусти системы станции.", state);
-         state = sayKesha("Есть!", state);
-         state = checkStationAngle(2,6, state);
-         state = setArrow(false, "Satellite1", state);
-         state = pause(true, state);
-         state = sayLev("Теперь внимательно! Сначала включай нейтронный актуатор, затем квантовый редупликатор и только в конце – тахионный эмиттер.", state);
-         state = sayKesha("Это сейчас на каком языке было?!", state);
-         state = sayLev("Ладно, ладно! Сначала включай красную панель на правом боку станции, потом зеленую на левом и только после этого – синий пульт на днище. Не перепутай!", state);
-         state = pause(false, state);
-         state = sayKesha("Хорошо, сейчас…", state);
-         state = activateSpawner("SpawnerMonster1_03", state);
-         state = checkPOI("pointOfInterestRed", state);
-         state = activateSpawner("SpawnerMonster1_01", state);
-         state = checkPOI("pointOfInterestGreen", state);
-         state = activateSpawner("SpawnerMonster1_02", state);
-         state = checkPOI("pointOfInterestBlue", state);
-         state = camera(3.92f, 2.73f, state);
-         state = sendRetranslatorWave (state);
-         state = wait(2, state);
-         state = destroyOneAsteroid("Rock (3)", state);
-         state = pause(true, state);
-         state = activateSpawner("SpawnerMonster2", state);
-         state = camera(17.91f, 17.24f, state);
-         state = sayKesha("Это что еще за нафиг?!", state);
-         state = sayLev("Ого, это ж как наша станция на местные астероиды влияет! Разберись с ними, и запускай еще раз.", state);
-         state = pause(false, state);
-         state = allMobIsDead(state);
-         state = sayKesha("Ффух, здоровенные, гады. Ладно, приступаю к запуску.", state);
-         state = sayLev("Давай, сначала ре… тьфу, короче зеленый пульт, красный пульт и синий пульт!", state);
-         state = sayKesha("Принято, зеленый, красный, синий. Так бы сразу, а то выражается, понимаешь… ", state);
-         state = sayLev("Я все слышу!", state);
-         state = sayKesha("Будет исполнено, Лев Михалыч!", state);
-         state = sayLev("Так-то лучше…", state);
-         state = checkPOI("pointOfInterestGreen", state);
-         state = checkPOI("pointOfInterestRed", state);
-         state = checkPOI("pointOfInterestBlue", state);
-         state = sayKesha("Сигнал пошел!", state);
-         state = sendRetranslatorWave(state);
-         state = sayLev("Подтверждаю, есть сигнал! Отлично, осталось еще три ретранслятора.", state); 
+
+         state = sayLev(, state); 
 		state = wait(5, state);
 		state = sayLev("Так, теперь давай наводи на второй ретранслятор… опа, опять пиявки! Расправься сначала с ними.", state);
 		state = activateSpawner("SpawnerMonster3_01", state);
@@ -210,6 +221,7 @@ public class TestScenary : TestScenaryHelper {
 		state = sayKesha("охххх…", state);
 		state = win (state);*/
 		// the end
+		say ("LevPanic", "Конец сценария...");
 	}
 }
 
@@ -280,5 +292,9 @@ public class TestScenaryHelper : ChainTestMachine {
 
 	public void stationSignal() {
 		NextChainStep ( new TestShootSignalStep() );
+	}
+
+	public void win() {
+		NextChainStep ( new TestWinStep() );
 	}
 }

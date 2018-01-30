@@ -33,12 +33,20 @@ public class MonsterAI : RigidPausable {
 	{	
 		if (pause)
 			return;
+		AILogic();
+	}
+
+	private void AILogic() {
+		System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch ();
+		stopwatch.Reset ();
+
+		Debug.Log ("----------------------");
 		if (!agressive) {
+			stopwatch.Start ();
 			Vector2 tempForce = transform.position - retranslator.transform.position;
 			transform.position = Vector3.Lerp (transform.position, retranslator.transform.position, Time.deltaTime * monsterSpeed);
 
 			//rotation to retranslator
-			enemy.freezeRotation = true;
 			Vector3 eulerAngles = transform.rotation.eulerAngles;  
 			float rotAngle = Mathf.Atan (tempForce.normalized.y / tempForce.normalized.x);
 
@@ -47,27 +55,25 @@ public class MonsterAI : RigidPausable {
 				moveAngle = rotAngle * Mathf.Rad2Deg + 90;
 			else if (tempForce.normalized.x < 0)
 				moveAngle = rotAngle * Mathf.Rad2Deg - 90;
-
 			Quaternion newRotation = Quaternion.Euler (0, 0, moveAngle);
 			transform.rotation = Quaternion.Slerp (transform.rotation, newRotation, Time.fixedDeltaTime * rotationSpeed);
 			enemy.freezeRotation = false;
-		
+			stopwatch.Stop ();
+			Debug.Log ("Ticks: " + stopwatch.ElapsedTicks + " ms:" + stopwatch.ElapsedMilliseconds);
 		} else 
 		{
 			Vector2 tempForce = transform.position - player.transform.position;
 			transform.position = Vector3.Lerp (transform.position, player.transform.position, Time.deltaTime * monsterSpeed);
-
 			//rotation to player
 			enemy.freezeRotation = true;
 			Vector3 eulerAngles = transform.rotation.eulerAngles;  
 			float rotAngle = Mathf.Atan (tempForce.normalized.y / tempForce.normalized.x);
-
 			float moveAngle = 0;
-			if (tempForce.normalized.x >= 0)
+			if (tempForce.normalized.x >= 0) {
 				moveAngle = rotAngle * Mathf.Rad2Deg + 90;
-			else if (tempForce.normalized.x < 0)
+			} else if (tempForce.normalized.x < 0) {
 				moveAngle = rotAngle * Mathf.Rad2Deg - 90;
-
+			}
 			Quaternion newRotation = Quaternion.Euler (0, 0, moveAngle);
 			transform.rotation = Quaternion.Slerp (transform.rotation, newRotation, Time.fixedDeltaTime * rotationSpeed);
 			enemy.freezeRotation = false;
