@@ -119,7 +119,7 @@ public class TestMoveCameraStep : TestMachineStep {
 	}
 
 	public override void Enter () {
-		game.mainCamera.position = position;
+		game.mainCamera.position = new Vector3(position.x, position.y, game.mainCamera.position.z);
 		Done ();
 	}
 }

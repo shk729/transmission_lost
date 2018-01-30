@@ -25,6 +25,8 @@ public class MonsterAI : RigidPausable {
 		retranslator = GameObject.Find("Retranslator");
 		enemy = GetComponent<Rigidbody2D>();
 		game = GameObject.Find (Constants.SCENE_LOGIC).GetComponent<GameController>();
+		if (game.pause)
+			Hold ();
 	}
 
 	void FixedUpdate ()
@@ -82,18 +84,11 @@ public class MonsterAI : RigidPausable {
 		Destroy (monsterDie_clone, monsterDie.duration);
 	}
 
-	public bool IsOnPause() {
-		if (game == null) 
-			game = GameObject.Find (Constants.SCENE_LOGIC).GetComponent<GameController>();
-		return game.pause;
-	}
-
 	public void SpawnNew(Vector2 position) {
 		GameObject newMonster = Instantiate(gameObject, position, Quaternion.identity) as GameObject;
 		newMonster.SetActive (true);
 		MonsterAI newMonsterAI = newMonster.GetComponent<MonsterAI> ();
 		newMonsterAI.monsterHealth = 100;
-		if (IsOnPause()) newMonsterAI.Hold();
 	}
 
 	public void DieAndDestroy() {
