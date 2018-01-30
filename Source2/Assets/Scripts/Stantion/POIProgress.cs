@@ -85,9 +85,6 @@ public class POIProgress : MonoBehaviour {
 
 			curValue_slider = maxValue_slider;
 		}  
-
-		Debug.Log (curValue_slider);
-
 	}
 
 }
