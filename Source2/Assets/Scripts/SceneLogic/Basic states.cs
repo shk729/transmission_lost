@@ -247,7 +247,6 @@ class AllMobIsDeadState : State {
 		if (monsters.Length == 0) {
 			machine.NextState (next);
 		}
-
 	}
 }
 
